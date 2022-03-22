@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "iE43eixug13q8k18v47h1s0JFqbCUMZiD9U2iMGho7lHZ72EyoaUaHfNLhYzY+cDlSlj4aB/PGysPU9qiCSuyw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\joric\\Desktop\\FHICT\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\joric\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.13\\microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512"
+  ],
+  "logs": []
+}
