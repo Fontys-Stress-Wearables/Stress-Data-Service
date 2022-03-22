@@ -24,9 +24,9 @@ namespace StressDataService.Controllers
 
         // GET /<StressMeasurementsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public StressMeasurement Get(Guid id)
         {
-            return "value";
+            return database.FindStressMeasurementById(id);
         }
 
         // POST api/<StressMeasurementsController>

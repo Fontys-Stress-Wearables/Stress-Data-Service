@@ -38,3 +38,11 @@ C:\Users\joric\Desktop\FHICT\Stress-Data-Service\StressDataService\obj\Debug\net
 C:\Users\joric\Desktop\FHICT\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.dll
 C:\Users\joric\Desktop\FHICT\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.pdb
 C:\Users\joric\Desktop\FHICT\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.genruntimeconfig.cache
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.dll
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.pdb
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.csproj.AssemblyReference.cache
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.AssemblyInfoInputs.cache
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.AssemblyInfo.cs
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.csproj.CoreCompileInputs.cache
+C:\Users\s161109\Source\Repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\netcoreapp3.1\StressDataService.MvcApplicationPartsAssemblyInfo.cache

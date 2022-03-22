@@ -23,9 +23,9 @@ namespace StressDataService.Controllers
 
         // GET api/<SkinTemperatureMeasurementsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public SkinTemperatureMeasurement Get(Guid id)
         {
-            return "value";
+            return database.FindSkinTemperatureMeasurementById(id);
         }
 
         // POST api/<SkinTemperatureMeasurementsController>

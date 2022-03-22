@@ -28,6 +28,49 @@ namespace StressDataService.Models
             Seed();
         }
 
+        public HeartRateMeasurement FindHeartRateMeasurementById(Guid id)
+        {
+ /*           foreach(HeartRateMeasurement h in HeartRateMeasurements)
+            {
+                if (h.Id.Equals(id))
+                {
+                    return h;
+                }
+            }
+            return default;*/
+            //HeartRateMeasurement t = new HeartRateMeasurement();
+
+            IEnumerable<HeartRateMeasurement> measurements =
+                from HeartRateMeasurement measurement in HeartRateMeasurements
+                where (measurement.Id).Equals(id)
+                select measurement;
+            return measurements.FirstOrDefault();
+        }
+        public SkinConductanceMeasurement FindSkinConductanceMeasurementById(Guid id)
+        {
+            IEnumerable<SkinConductanceMeasurement> measurements =
+                from SkinConductanceMeasurement measurement in SkinConductanceMeasurements
+                where (measurement.Id).Equals(id)
+                select measurement;
+            return measurements.FirstOrDefault();
+        }
+        public SkinTemperatureMeasurement FindSkinTemperatureMeasurementById(Guid id)
+        {
+            IEnumerable<SkinTemperatureMeasurement> measurements =
+                from SkinTemperatureMeasurement measurement in SkinTemperatureMeasurements
+                where (measurement.Id).Equals(id)
+                select measurement;
+            return measurements.FirstOrDefault();
+        }
+        public StressMeasurement FindStressMeasurementById(Guid id)
+        {
+            IEnumerable<StressMeasurement> measurements =
+                from StressMeasurement measurement in StressMeasurements
+                where (measurement.Id).Equals(id)
+                select measurement;
+            return measurements.FirstOrDefault();
+        }
+
         public void Seed()
         {
             DateTime timeStamp = DateTime.Now;

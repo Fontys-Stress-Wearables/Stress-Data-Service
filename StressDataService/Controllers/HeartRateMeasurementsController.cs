@@ -24,9 +24,10 @@ namespace StressDataService.Controllers
 
         // GET /HeartRateMeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public HeartRateMeasurement Get(Guid id)
         {
-            return "value";
+            Console.WriteLine("Id is " + id);
+            return database.FindHeartRateMeasurementById(id);
         }
 
         // POST api/<HeartRateMeasurementsController>

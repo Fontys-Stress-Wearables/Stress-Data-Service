@@ -24,9 +24,9 @@ namespace StressDataService.Controllers
 
         // GET api/<SkinConductanceMeasurements>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public SkinConductanceMeasurement Get(Guid id)
         {
-            return "value";
+            return database.FindSkinConductanceMeasurementById(id);
         }
 
         // POST api/<SkinConductanceMeasurements>
