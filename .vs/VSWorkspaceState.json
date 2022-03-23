@@ -5,6 +5,6 @@
     "\\StressDataService\\Controllers",
     "\\StressDataService\\Models"
   ],
-  "SelectedNode": "\\StressDataService.sln",
+  "SelectedNode": "\\StressDataService\\MockDatabase.cs",
   "PreviewInSolutionExplorer": false
 }
