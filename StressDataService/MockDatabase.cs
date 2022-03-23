@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StressDataService.Models;
 
-namespace StressDataService.Models
+namespace StressDataService
 {
     public class MockDatabase
     {

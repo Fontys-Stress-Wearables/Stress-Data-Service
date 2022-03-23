@@ -12,8 +12,11 @@ namespace StressDataService.Controllers
     [ApiController]
     public class PatientsController : ControllerBase
     {
-        MockDatabase database = new MockDatabase();
-
+        private readonly MockDatabase database;
+        public PatientsController(MockDatabase database)
+        {
+            this.database = database;
+        }
         // GET: <PatientsController>
         [HttpGet]
         public List<Patient> Get()

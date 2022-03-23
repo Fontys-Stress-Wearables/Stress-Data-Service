@@ -13,7 +13,12 @@ namespace StressDataService.Controllers
     [ApiController]
     public class SkinTemperatureMeasurementsController : ControllerBase
     {
-        MockDatabase database = new MockDatabase();
+        private readonly MockDatabase database;
+        public SkinTemperatureMeasurementsController(MockDatabase database)
+        {
+            this.database = database;
+        }
+        
         // GET: /skintemperaturemeasurements
         [HttpGet]
         public List<SkinTemperatureMeasurement> Get()

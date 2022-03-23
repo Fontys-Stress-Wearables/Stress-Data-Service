@@ -11,10 +11,13 @@ namespace StressDataService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class SkinConductanceMeasurements : ControllerBase
+    public class SkinConductanceMeasurementsController : ControllerBase
     {
-        MockDatabase database = new MockDatabase();
-
+        private readonly MockDatabase database;
+        public SkinConductanceMeasurementsController(MockDatabase database)
+        {
+            this.database = database;
+        }
         // GET: /skinconductancemeasurements
         [HttpGet]
         public List<SkinConductanceMeasurement> Get()

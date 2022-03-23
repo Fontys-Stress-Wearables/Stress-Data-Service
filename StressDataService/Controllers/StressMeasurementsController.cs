@@ -13,7 +13,11 @@ namespace StressDataService.Controllers
     [ApiController]
     public class StressMeasurementsController : ControllerBase
     {
-        MockDatabase database = new MockDatabase();
+        private readonly MockDatabase database;
+        public StressMeasurementsController(MockDatabase database)
+        {
+            this.database = database;
+        }
 
         // GET: /stressmeasurements
         [HttpGet]

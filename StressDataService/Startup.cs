@@ -25,7 +25,12 @@ namespace StressDataService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<MockDatabase>();
             services.AddControllers();
+            /*services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StressAPI", Version = "v1" });
+            });*/  //With the nuGet Package "Swashbuckle.AspNetCore" this should show a swagger document (Not yet installed since it needs .NET6 probably)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
