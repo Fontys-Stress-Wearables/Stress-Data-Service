@@ -11,7 +11,6 @@ namespace StressDataService.Models
         public List<SkinConductanceMeasurement> SkinConductanceMeasurements { get; }
         public List<SkinTemperatureMeasurement> SkinTemperatureMeasurements { get; }
         public List<StressMeasurement> StressMeasurements { get; }
-
         public List<Patient> Patients { get; }
         public List<Wearable> Wearables { get; }
 
@@ -109,6 +108,27 @@ namespace StressDataService.Models
                 Random random = new Random();
                 int stressValue = random.Next(0,100);
                 StressMeasurements.Add(new StressMeasurement(timeStamp, stressValue));
+            }
+            string[] maleNames = new string[10] { "aaron", "abdul", "abe", "abel", "abraham", "adam", "adan", "adolfo", "adolph", "adrian" };
+            string[] femaleNames = new string[4] { "abby", "abigail", "adele", "adrian" };
+            string[] lastNames = new string[5] { "abbott", "acosta", "adams", "adkins", "aguilar" };
+
+           
+            for (int i = 0; i < 10; i++)
+            {
+                string FirstName;
+                Random rand = new Random(DateTime.Now.Second);
+                if (rand.Next(1, 2) == 1)
+                {
+                    FirstName = maleNames[rand.Next(0, maleNames.Length - 1)];
+                }
+                else
+                {
+                    FirstName = femaleNames[rand.Next(0, femaleNames.Length - 1)];
+                }
+
+                Patient p = new Patient(maleNames[i], "", lastNames[i%5], DateTime.Now, "test@test.com");
+                Patients.Add(p);
             }
         }
     }
