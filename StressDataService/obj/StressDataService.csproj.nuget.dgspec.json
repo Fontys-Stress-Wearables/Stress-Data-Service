@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {}
+    "F:\\SEMESTER 6\\Group project\\Back_end\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {
+    "F:\\SEMESTER 6\\Group project\\Back_end\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+        "projectUniqueName": "F:\\SEMESTER 6\\Group project\\Back_end\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
         "projectName": "StressDataService",
-        "projectPath": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
-        "packagesPath": "C:\\Users\\s161109\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\obj\\",
+        "projectPath": "F:\\SEMESTER 6\\Group project\\Back_end\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+        "packagesPath": "C:\\Users\\xD\\.nuget\\packages\\",
+        "outputPath": "F:\\SEMESTER 6\\Group project\\Back_end\\Stress-Data-Service\\StressDataService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\s161109\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\xD\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
