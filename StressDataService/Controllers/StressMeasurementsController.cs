@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StressDataService.Repositories;
 using StressDataService.Models;
 using System;
 using System.Collections.Generic;
@@ -13,42 +14,46 @@ namespace StressDataService.Controllers
     [ApiController]
     public class StressMeasurementsController : ControllerBase
     {
-        private readonly MockDatabase database;
-        public StressMeasurementsController(MockDatabase database)
+        private readonly StressMeasurementsRepository repository;
+
+        public StressMeasurementsController(StressMeasurementsRepository repository)
         {
-            this.database = database;
+            this.repository = repository;
         }
 
         // GET: /stressmeasurements
         [HttpGet]
         public List<StressMeasurement> Get()
         {
-            return database.StressMeasurements;
+            return repository.GetAllMeasurements();
         }
 
-        // GET /<StressMeasurementsController>/5
+        // GET /stressmeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("{id}")]
         public StressMeasurement Get(Guid id)
         {
-            return database.FindStressMeasurementById(id);
+            return repository.GetMeasurementById(id);
         }
 
-        // POST api/<StressMeasurementsController>
+        // POST /stressmeasurements
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
-        // PUT api/<StressMeasurementsController>/5
+        // PUT /stressmeasurements
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
-        // DELETE api/<StressMeasurementsController>/5
+        // DELETE /stressmeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            repository.DeleteMeasurementById(id);
         }
     }
 }

@@ -8,17 +8,14 @@ namespace StressDataService.Models
     public class StressMeasurement
     {
         public Guid Id { get; set; }
+        public Guid WearableId { get; set; }
         public DateTime TimeStamp { get; set; }
         public int StressValue { get; set; }
 
-        public StressMeasurement()
-        {
-
-        }
-
-        public StressMeasurement(DateTime timeStamp, int stressValue)
+        public StressMeasurement(Guid wearableId, DateTime timeStamp, int stressValue)
         {
             Id = Guid.NewGuid();
+            WearableId = wearableId;
             TimeStamp = timeStamp;
             StressValue = stressValue;
         }

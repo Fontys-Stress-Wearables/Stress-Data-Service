@@ -12,15 +12,10 @@ namespace StressDataService.Models
         public DateTime TimeStamp { get; set; }
         public float SkinConductance { get; set; }
 
-        public SkinConductanceMeasurement()
-        {
-
-        }
-
-        public SkinConductanceMeasurement(DateTime timeStamp, float skinConductance)
+        public SkinConductanceMeasurement(Guid wearableId, DateTime timeStamp, float skinConductance)
         {
             Id = Guid.NewGuid();
-            WearableId = Guid.NewGuid();
+            WearableId = wearableId;
             TimeStamp = timeStamp;
             SkinConductance = skinConductance;
         }

@@ -1,4 +1,5 @@
 ﻿using StressDataService.Models;
+using StressDataService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,43 +14,53 @@ namespace StressDataService.Controllers
     [ApiController]
     public class HeartRateMeasurementsController : ControllerBase
     {
-        private readonly MockDatabase database;
-        public HeartRateMeasurementsController(MockDatabase database)
+        private readonly HeartRateMeasurementsRepository repository;
+
+        public HeartRateMeasurementsController(HeartRateMeasurementsRepository repository)
         {
-            this.database = database;
+            this.repository = repository;
         }
 
-        // GET: /HeartRateMeasurements
+        // GET: /heartratemeasurements
         [HttpGet]
         public List<HeartRateMeasurement> Get()
         {
-            return database.HeartRateMeasurements;
+            return repository.GetAllMeasurements();
         }
 
-        // GET /HeartRateMeasurements/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("{id}")]
-        public HeartRateMeasurement Get(Guid id)
+        // GET: /......
+        [HttpGet("/Wearable/{id}")]
+        public List<HeartRateMeasurement> GetByWearableId(Guid WearableId)
         {
-            Console.WriteLine("Id is " + id);
-            return database.FindHeartRateMeasurementById(id);
+            throw new NotImplementedException();
         }
 
-        // POST api/<HeartRateMeasurementsController>
+        // GET /heartratemeasurements/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("{id}")]
+        public HeartRateMeasurement GetById(Guid id)
+        {
+            return repository.GetMeasurementById(id);
+        }
+
+        // POST api/heartratemeasurements
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
-        // PUT api/<HeartRateMeasurementsController>/5
+        // PUT api/heartratemeasurements
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
-        // DELETE api/<HeartRateMeasurementsController>/5
+        // DELETE api/heartratemeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            repository.DeleteMeasurementById(id);
         }
     }
 }

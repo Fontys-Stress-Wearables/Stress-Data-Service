@@ -14,15 +14,10 @@ namespace StressDataService.Models
         public int HeartbeatInterval { get; set; }
         public int HeartRateVariability { get; set; }
 
-        public HeartRateMeasurement()
-        {
-
-        }
-
-        public HeartRateMeasurement(DateTime timeStamp, int heartRate, int heartbeatInterval, int heartRateVariability)
+        public HeartRateMeasurement(Guid wearableId, DateTime timeStamp, int heartRate, int heartbeatInterval, int heartRateVariability)
         {
             Id = Guid.NewGuid();
-            WearableId = Guid.NewGuid();
+            WearableId = wearableId;
             TimeStamp = timeStamp;
             HeartRate = heartRate;
             HeartbeatInterval = heartbeatInterval;

@@ -15,11 +15,6 @@ namespace StressDataService.Models
         public DateTime Birthdate { get; set; }
         public string EmailAddress { get; set; }
 
-        public Patient()
-        {
-
-        }
-
         public Patient(string firstName, string lastNamePrefix, string lastName, DateTime birthdate, string emailAddress)
         {
             Id = Guid.NewGuid();

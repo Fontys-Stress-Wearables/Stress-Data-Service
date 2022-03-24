@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StressDataService.Models;
+using StressDataService.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,41 +14,46 @@ namespace StressDataService.Controllers
     [ApiController]
     public class SkinConductanceMeasurementsController : ControllerBase
     {
-        private readonly MockDatabase database;
-        public SkinConductanceMeasurementsController(MockDatabase database)
+        private readonly SkinConductanceMeasurementsRepository repository;
+
+        public SkinConductanceMeasurementsController(SkinConductanceMeasurementsRepository repository)
         {
-            this.database = database;
+            this.repository = repository;
         }
+
         // GET: /skinconductancemeasurements
         [HttpGet]
         public List<SkinConductanceMeasurement> Get()
         {
-            return database.SkinConductanceMeasurements;
+            return repository.GetAllMeasurements();
         }
 
-        // GET api/<SkinConductanceMeasurements>/5
+        // GET /skinconductancemeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("{id}")]
         public SkinConductanceMeasurement Get(Guid id)
         {
-            return database.FindSkinConductanceMeasurementById(id);
+            return repository.GetMeasurementById(id);
         }
 
-        // POST api/<SkinConductanceMeasurements>
+        // POST /skinconductancemeasurements
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
-        // PUT api/<SkinConductanceMeasurements>/5
+        // PUT /skinconductancemeasurements
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
-        // DELETE api/<SkinConductanceMeasurements>/5
+        // DELETE /skinconductancemeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            repository.DeleteMeasurementById(id);
         }
     }
 }

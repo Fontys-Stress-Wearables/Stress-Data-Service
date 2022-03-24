@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StressDataService.Models;
+using StressDataService.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,42 +14,46 @@ namespace StressDataService.Controllers
     [ApiController]
     public class SkinTemperatureMeasurementsController : ControllerBase
     {
-        private readonly MockDatabase database;
-        public SkinTemperatureMeasurementsController(MockDatabase database)
+        private readonly SkinTemperatureMeasurementsRepository repository;
+
+        public SkinTemperatureMeasurementsController(SkinTemperatureMeasurementsRepository repository)
         {
-            this.database = database;
+            this.repository = repository;
         }
         
         // GET: /skintemperaturemeasurements
         [HttpGet]
         public List<SkinTemperatureMeasurement> Get()
         {
-            return database.SkinTemperatureMeasurements;
+            return repository.GetAllMeasurements();
         }
 
         // GET api/<SkinTemperatureMeasurementsController>/5
         [HttpGet("{id}")]
         public SkinTemperatureMeasurement Get(Guid id)
         {
-            return database.FindSkinTemperatureMeasurementById(id);
+            return repository.GetMeasurementById(id);
         }
 
         // POST api/<SkinTemperatureMeasurementsController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
         // PUT api/<SkinTemperatureMeasurementsController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            throw new NotImplementedException();
         }
 
         // DELETE api/<SkinTemperatureMeasurementsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            repository.DeleteMeasurementById(id);
         }
     }
 }

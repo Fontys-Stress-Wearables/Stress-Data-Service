@@ -40,3 +40,9 @@ F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\D
 F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.pdb
 F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.genruntimeconfig.cache
 F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\ref\StressDataService.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.CopyComplete

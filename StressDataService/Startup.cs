@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StressDataService.Repositories;
 
 namespace StressDataService
 {
@@ -27,7 +28,11 @@ namespace StressDataService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<MockDatabase>();
+            services.AddSingleton<IDatabaseHandler, MockDatabase>();
+            services.AddSingleton<HeartRateMeasurementsRepository>();
+            services.AddSingleton<StressMeasurementsRepository>();
+            services.AddSingleton<SkinTemperatureMeasurementsRepository>();
+            services.AddSingleton<SkinConductanceMeasurementsRepository>();
             services.AddControllers();
             services.AddCors(options =>
             {
