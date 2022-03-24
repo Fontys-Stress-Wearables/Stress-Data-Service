@@ -15,6 +15,8 @@ namespace StressDataService
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +27,16 @@ namespace StressDataService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://localhost:3000",
+                                                          "http://localhost:3000");// Origin => React App here  
+                              });
+            });
+
             services.AddSingleton<MockDatabase>();
             services.AddControllers();
             /*services.AddSwaggerGen(c =>
@@ -42,6 +54,10 @@ namespace StressDataService
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseRouting();
 

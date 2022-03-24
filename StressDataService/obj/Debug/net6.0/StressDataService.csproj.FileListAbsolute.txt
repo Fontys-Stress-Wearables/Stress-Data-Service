@@ -19,3 +19,24 @@ C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataServic
 C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.pdb
 C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.genruntimeconfig.cache
 C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\net6.0\ref\StressDataService.dll
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\appsettings.Development.json
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\appsettings.json
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.exe
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.deps.json
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.runtimeconfig.json
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.dll
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.pdb
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.AssemblyReference.cache
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.GeneratedMSBuildEditorConfig.editorconfig
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.AssemblyInfoInputs.cache
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.AssemblyInfo.cs
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.CoreCompileInputs.cache
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.MvcApplicationPartsAssemblyInfo.cache
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\staticwebassets.build.json
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\staticwebassets.development.json
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\scopedcss\bundle\StressDataService.styles.css
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.dll
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\refint\StressDataService.dll
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.pdb
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.genruntimeconfig.cache
+F:\SEMESTER 6\Group project\Back_end\Stress-Data-Service\StressDataService\obj\Debug\net6.0\ref\StressDataService.dll
