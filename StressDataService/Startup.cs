@@ -27,6 +27,8 @@ namespace StressDataService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<MockDatabase>();
+            services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -36,9 +38,6 @@ namespace StressDataService
                                                           "http://localhost:3000");// Origin => React App here  
                               });
             });
-
-            services.AddSingleton<MockDatabase>();
-            services.AddControllers();
             /*services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StressAPI", Version = "v1" });
