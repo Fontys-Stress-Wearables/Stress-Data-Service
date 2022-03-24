@@ -28,11 +28,19 @@ namespace StressDataService.Controllers
             return repository.GetAllMeasurements();
         }
 
+
         // GET /skinconductancemeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("{id}")]
         public SkinConductanceMeasurement Get(Guid id)
         {
             return repository.GetMeasurementById(id);
+        }
+
+        // GET: /skinconductancemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("wearable/{wearableId}")]
+        public List<SkinConductanceMeasurement> GetByWearableId(Guid wearableId)
+        {
+            return repository.GetMeasurementsByWearableId(wearableId);
         }
 
         // POST /skinconductancemeasurements

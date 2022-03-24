@@ -30,6 +30,7 @@ namespace StressDataService
 
         private void Seed()
         {
+            Guid wearableId = Guid.NewGuid();
             DateTime timeStamp = DateTime.Now;
             for (int i = 0; i < 100; i++)
             {
@@ -38,34 +39,52 @@ namespace StressDataService
                 int heartRate = random.Next(60, 200);
                 int heartbeatInterval = Convert.ToInt32(heartRate * 1000 / 60);
                 int heartRateVariability = random.Next(10, 90);
-                HeartRateMeasurements.Add(new HeartRateMeasurement(Guid.NewGuid(), timeStamp, heartRate, heartbeatInterval, heartRateVariability));
+                HeartRateMeasurements.Add(new HeartRateMeasurement(wearableId, timeStamp, heartRate, heartbeatInterval, heartRateVariability));
+                if (i == 40)
+                {
+                    wearableId = Guid.NewGuid();
+                }
             }
-
+            wearableId = Guid.NewGuid();
             timeStamp = DateTime.Now;
             for (int i = 0; i < 100; i++)
             {
                 timeStamp = timeStamp.AddSeconds(1);
                 Random random = new Random();
                 float skinConductance = (float)(random.NextDouble() * random.Next(1, 20));
-                SkinConductanceMeasurements.Add(new SkinConductanceMeasurement(Guid.NewGuid(), timeStamp, skinConductance));
+                SkinConductanceMeasurements.Add(new SkinConductanceMeasurement(wearableId, timeStamp, skinConductance));
+                if (i == 49)
+                {
+                    wearableId = Guid.NewGuid();
+                }
             }
 
+            wearableId = Guid.NewGuid();
             timeStamp = DateTime.Now;
             for (int i = 0; i < 100; i++)
             {
                 timeStamp = timeStamp.AddSeconds(1);
                 Random random = new Random();
                 float skinTemperature = (float)(random.Next(25, 40) + random.NextDouble());
-                SkinTemperatureMeasurements.Add(new SkinTemperatureMeasurement(Guid.NewGuid(), timeStamp, skinTemperature));
+                SkinTemperatureMeasurements.Add(new SkinTemperatureMeasurement(wearableId, timeStamp, skinTemperature));
+                if (i == 69)
+                {
+                    wearableId = Guid.NewGuid();
+                }
             }
 
+            wearableId = Guid.NewGuid();
             timeStamp = DateTime.Now;
             for (int i = 0; i < 100; i++)
             {
                 timeStamp = timeStamp.AddSeconds(1);
                 Random random = new Random();
                 int stressValue = random.Next(0, 100);
-                StressMeasurements.Add(new StressMeasurement(Guid.NewGuid(), timeStamp, stressValue));
+                StressMeasurements.Add(new StressMeasurement(wearableId, timeStamp, stressValue));
+                if (i == 29)
+                {
+                    wearableId = Guid.NewGuid();
+                }
             }
             string[] maleNames = new string[10] { "aaron", "abdul", "abe", "abel", "abraham", "adam", "adan", "adolfo", "adolph", "adrian" };
             string[] femaleNames = new string[4] { "abby", "abigail", "adele", "adrian" };
