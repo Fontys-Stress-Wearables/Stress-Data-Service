@@ -36,11 +36,18 @@ namespace StressDataService.Controllers
             return repository.GetMeasurementById(id);
         }
 
-        // GET: /skinconductancemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
+        /*// GET: /skinconductancemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
         public List<SkinConductanceMeasurement> GetByWearableId(Guid wearableId)
         {
             return repository.GetMeasurementsByWearableId(wearableId);
+        }*/
+
+        // GET: /skinconductancemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000
+        [HttpGet("wearable/{wearableId}")]
+        public List<SkinConductanceMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
+        {
+            return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
         }
 
         // POST /skinconductancemeasurements

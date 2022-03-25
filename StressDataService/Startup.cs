@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,21 @@ namespace StressDataService
             services.AddSingleton<SkinTemperatureMeasurementsRepository>();
             services.AddSingleton<SkinConductanceMeasurementsRepository>();
             services.AddControllers();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "StressDataService API",
+                    Description = "An ASP.NET Core Web API for managing Stress Data measurements",
+                    License = new OpenApiLicense
+                    {
+                        Name = "Example License",
+                        Url = new Uri("https://example.com/license")
+                    }
+                });
+            }); //With the nuGet Package "Swashbuckle.AspNetCore" this should show a swagger document (Not yet installed since it needs .NET6 probably)
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -43,10 +59,6 @@ namespace StressDataService
                                                           "http://localhost:3000");// Origin => React App here  
                               });
             });
-            /*services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StressAPI", Version = "v1" });
-            });*/  //With the nuGet Package "Swashbuckle.AspNetCore" this should show a swagger document (Not yet installed since it needs .NET6 probably)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +67,8 @@ namespace StressDataService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();

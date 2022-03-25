@@ -28,11 +28,18 @@ namespace StressDataService.Controllers
             return repository.GetAllMeasurements();
         }
 
-        // GET: /heartratemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
+        /*// GET: /heartratemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
         public List<HeartRateMeasurement> GetByWearableId(Guid wearableId)
         {
             return repository.GetMeasurementsByWearableId(wearableId);
+        }*/
+
+        // GET: /heartratemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("wearable/{wearableId}")]
+        public List<HeartRateMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
+        {
+            return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
         }
 
         // GET /heartratemeasurements/550e8400-e29b-41d4-a716-446655440000 
