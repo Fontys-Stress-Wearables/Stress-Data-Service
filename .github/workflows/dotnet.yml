@@ -2,7 +2,7 @@ name: .NET CI
 
 on:
   push:
-    branches: [ AddUnitTests ]
+    branches: [ main, AddUnitTests ]
   pull_request:
     branches: [ main ]
 
