@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using NATS.Client;
 using System;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class NatsService : INatsService
 {
