@@ -23,4 +23,5 @@ namespace StressDataService
                     webBuilder.UseStartup<Startup>();
                 });
     }
+
 }

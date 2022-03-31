@@ -34,7 +34,9 @@ namespace StressDataService
             services.AddSingleton<StressMeasurementsRepository>();
             services.AddSingleton<SkinTemperatureMeasurementsRepository>();
             services.AddSingleton<SkinConductanceMeasurementsRepository>();
+            services.AddSingleton<INatsService, NatsService>();
             services.AddControllers();
+        
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -61,6 +63,7 @@ namespace StressDataService
             });
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -71,6 +74,7 @@ namespace StressDataService
                 app.UseSwaggerUI();
             }
 
+            
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
@@ -85,6 +89,9 @@ namespace StressDataService
             {
                 endpoints.MapControllers();
             });
+            app.ApplicationServices.GetService<INatsService>();
         }
+
+        
     }
 }

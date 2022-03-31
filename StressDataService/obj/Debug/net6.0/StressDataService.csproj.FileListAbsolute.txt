@@ -46,3 +46,32 @@ C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataServic
 C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.CopyComplete
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.AssemblyReference.cache
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.AssemblyInfoInputs.cache
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.AssemblyInfo.cs
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.CoreCompileInputs.cache
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\refint\StressDataService.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.pdb
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\appsettings.json
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.exe
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.deps.json
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.runtimeconfig.json
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\StressDataService.pdb
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\NATS.Client.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\scopedcss\bundle\StressDataService.styles.css
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.csproj.CopyComplete
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.genruntimeconfig.cache
+C:\Users\Jorick\OneDrive\S6\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\ref\StressDataService.dll
