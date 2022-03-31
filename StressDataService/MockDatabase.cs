@@ -397,5 +397,25 @@ namespace StressDataService
             SkinTemperatureMeasurements.Remove(GetSkinTemperatureMeasurementById(id));
         }
         #endregion
+
+        #region Patients
+        public List<Patient> GetPatients()
+        {
+            return Patients;
+        }
+        public Patient GetPatientById(Guid patientId)
+        {
+            IEnumerable<Patient> patients =
+                from Patient patient in Patients
+                where (patient.Id).Equals(patientId)
+                select patient;
+            return patients.FirstOrDefault();
+        }
+
+        public void InsertPatient(Patient patient)
+        {
+            Patients.Add(patient);
+        }
+        #endregion
     }
 }
