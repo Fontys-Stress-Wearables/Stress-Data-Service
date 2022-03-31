@@ -3,13 +3,12 @@ using Newtonsoft.Json;
 using NATS.Client;
 using System;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class NatsService : INatsService
 {
     private readonly IConfiguration _configuration;
     private readonly IConnection? _connection;
+    private IAsyncSubscription? _asyncSubscription;
 
     public NatsService(IConfiguration configuration)
     {
@@ -24,24 +23,30 @@ public class NatsService : INatsService
         Options opts = ConnectionFactory.GetDefaultOptions();
 
         opts.Url = "nats://localhost:4222";
-        Console.WriteLine("Connected to Nats Server");
+        Console.WriteLine("Connected to the NATS Server");
         return cf.CreateConnection(opts);
     }
 
     public void Publish<T>(string target, T data)
     {
-        var message = new NatsMessage<T>{target = target, message = data};
+        var message = new NatsMessage<T> { target = target, message = data };
         _connection?.Publish(target, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message)));
     }
 
     public void Subscribe(string target)
     {
-        ISyncSubscription sub = _connection.SubscribeSync(target);
-        var message = sub.NextMessage();
-        if (message != null)
+        EventHandler<MsgHandlerEventArgs> h = (sender, args) =>
         {
-            string data = Encoding.UTF8.GetString(message.Data);
-            LogMessage(data);
+            // print the message
+            string receivedMessage = Encoding.UTF8.GetString(args.Message.Data);
+            LogMessage(receivedMessage);
+        };
+
+        _asyncSubscription = _connection?.SubscribeAsync(target);
+        if (_asyncSubscription != null)
+        {
+            _asyncSubscription.MessageHandler += h;
+            _asyncSubscription.Start();
         }
     }
 
