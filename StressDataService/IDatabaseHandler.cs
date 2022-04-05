@@ -99,6 +99,11 @@ namespace StressDataService
         public void DeleteSkinTemperatureMeasurementById(Guid id);
         #endregion
 
+        #region Patients
+        public List<Patient> GetPatients();
+        public Patient GetPatientById(Guid id);
+        public void InsertPatient(Patient patient);
+        #endregion
 
     }
 }

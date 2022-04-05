@@ -21,7 +21,7 @@ namespace StressDataService.Controllers
         [HttpGet]
         public List<Patient> Get()
         {
-            return new List<Patient>();
+            return database.GetPatients();
         }
 
         // GET <PatientController>/5

@@ -14,11 +14,13 @@ namespace StressDataService.Controllers
     [ApiController]
     public class StressMeasurementsController : ControllerBase
     {
+        private readonly INatsService _natsService;
         private readonly StressMeasurementsRepository repository;
 
-        public StressMeasurementsController(StressMeasurementsRepository repository)
+        public StressMeasurementsController(StressMeasurementsRepository repository, INatsService natsService)
         {
             this.repository = repository;
+            _natsService = natsService;
         }
 
         /*// GET: /stressmeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
@@ -39,6 +41,7 @@ namespace StressDataService.Controllers
         [HttpGet]
         public List<StressMeasurement> Get()
         {
+            _natsService.Publish("technical_health", "hearthbeat");
             return repository.GetAllMeasurements();
         }
 
