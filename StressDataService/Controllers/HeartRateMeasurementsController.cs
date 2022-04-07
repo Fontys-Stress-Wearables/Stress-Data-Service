@@ -28,6 +28,14 @@ namespace StressDataService.Controllers
             return repository.GetAllMeasurements();
         }
 
+
+        // GET: /heartratemeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("patient/{patientId}")]
+        public List<HeartRateMeasurement> GetByPatientId(Guid patientId)
+        {
+            return repository.GetMeasurementsByPatientId(patientId);
+        }
+
         /*// GET: /heartratemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
         public List<HeartRateMeasurement> GetByWearableId(Guid wearableId)

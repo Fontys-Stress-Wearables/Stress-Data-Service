@@ -35,6 +35,13 @@ namespace StressDataService.Controllers
             return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
         }
 
+        // GET: /skintemperaturemeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("patient/{patientId}")]
+        public List<SkinTemperatureMeasurement> GetByPatientId(Guid patientId)
+        {
+            return repository.GetMeasurementsByPatientId(patientId);
+        }
+
         // GET: /skintemperaturemeasurements
         [HttpGet]
         public List<SkinTemperatureMeasurement> Get()

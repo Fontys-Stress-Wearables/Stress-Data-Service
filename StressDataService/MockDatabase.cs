@@ -30,62 +30,6 @@ namespace StressDataService
 
         private void Seed()
         {
-            Guid wearableId = Guid.NewGuid();
-            DateTime timeStamp = DateTime.Now;
-            for (int i = 0; i < 100; i++)
-            {
-                timeStamp = timeStamp.AddSeconds(1);
-                Random random = new Random();
-                int heartRate = random.Next(60, 200);
-                int heartbeatInterval = Convert.ToInt32(heartRate * 1000 / 60);
-                int heartRateVariability = random.Next(10, 90);
-                HeartRateMeasurements.Add(new HeartRateMeasurement(wearableId, timeStamp, heartRate, heartbeatInterval, heartRateVariability));
-                if (i == 40)
-                {
-                    wearableId = Guid.NewGuid();
-                }
-            }
-            wearableId = Guid.NewGuid();
-            timeStamp = DateTime.Now;
-            for (int i = 0; i < 100; i++)
-            {
-                timeStamp = timeStamp.AddSeconds(1);
-                Random random = new Random();
-                float skinConductance = (float)(random.NextDouble() * random.Next(1, 20));
-                SkinConductanceMeasurements.Add(new SkinConductanceMeasurement(wearableId, timeStamp, skinConductance));
-                if (i == 49)
-                {
-                    wearableId = Guid.NewGuid();
-                }
-            }
-
-            wearableId = Guid.NewGuid();
-            timeStamp = DateTime.Now;
-            for (int i = 0; i < 100; i++)
-            {
-                timeStamp = timeStamp.AddSeconds(1);
-                Random random = new Random();
-                float skinTemperature = (float)(random.Next(25, 40) + random.NextDouble());
-                SkinTemperatureMeasurements.Add(new SkinTemperatureMeasurement(wearableId, timeStamp, skinTemperature));
-                if (i == 69)
-                {
-                    wearableId = Guid.NewGuid();
-                }
-            }
-
-            wearableId = Guid.NewGuid();
-            timeStamp = DateTime.Now;
-            for (int i = 0; i < 100; i++)
-            {
-                timeStamp = timeStamp.AddSeconds(1);
-                Random random = new Random();
-                int stressValue = random.Next(0, 100);
-                StressMeasurements.Add(new StressMeasurement(wearableId, timeStamp, stressValue));
-                if (i == 29)
-                {
-                    wearableId = Guid.NewGuid();
-                }
-            }
             string[] maleNames = new string[10] { "aaron", "abdul", "abe", "abel", "abraham", "adam", "adan", "adolfo", "adolph", "adrian" };
             string[] femaleNames = new string[4] { "abby", "abigail", "adele", "adrian" };
             string[] lastNames = new string[5] { "abbott", "acosta", "adams", "adkins", "aguilar" };
@@ -107,6 +51,51 @@ namespace StressDataService
                 Patient p = new Patient(maleNames[i], "", lastNames[i % 5], DateTime.Now, "test@test.com");
                 Patients.Add(p);
             }
+
+            for (int i = 0; i < 10; i++)
+            {
+                Guid id = Guid.NewGuid();
+                Wearables.Add(new Wearable(Patients[i].Id));
+            }
+
+            DateTime timeStamp = DateTime.Now;
+            for (int i = 0; i < 100; i++)
+            {
+                timeStamp = timeStamp.AddSeconds(1);
+                Random random = new Random();
+                int heartRate = random.Next(60, 200);
+                int heartbeatInterval = Convert.ToInt32(heartRate * 1000 / 60);
+                int heartRateVariability = random.Next(10, 90);
+                HeartRateMeasurements.Add(new HeartRateMeasurement(Wearables[random.Next(0,10)].Id, timeStamp, heartRate, heartbeatInterval, heartRateVariability));
+            }
+
+            timeStamp = DateTime.Now;
+            for (int i = 0; i < 100; i++)
+            {
+                timeStamp = timeStamp.AddSeconds(1);
+                Random random = new Random();
+                float skinConductance = (float)(random.NextDouble() * random.Next(1, 20));
+                SkinConductanceMeasurements.Add(new SkinConductanceMeasurement(Wearables[random.Next(0, 10)].Id, timeStamp, skinConductance));
+            }
+
+            timeStamp = DateTime.Now;
+            for (int i = 0; i < 100; i++)
+            {
+                timeStamp = timeStamp.AddSeconds(1);
+                Random random = new Random();
+                float skinTemperature = (float)(random.Next(25, 40) + random.NextDouble());
+                SkinTemperatureMeasurements.Add(new SkinTemperatureMeasurement(Wearables[random.Next(0, 10)].Id, timeStamp, skinTemperature));
+            }
+
+            timeStamp = DateTime.Now;
+            for (int i = 0; i < 100; i++)
+            {
+                timeStamp = timeStamp.AddSeconds(1);
+                Random random = new Random();
+                int stressValue = random.Next(0, 100);
+                StressMeasurements.Add(new StressMeasurement(Wearables[random.Next(0, 10)].Id, timeStamp, stressValue));
+            }
+
         }
 
         #region StressMeasurements
@@ -132,6 +121,27 @@ namespace StressDataService
                where (measurement.WearableId).Equals(wearableId) && measurement.TimeStamp >= periodStartTime && measurement.TimeStamp <= periodEndTime
                select measurement;
             return measurements.ToList();
+        }
+
+        public List<StressMeasurement> GetStressMeasurementsByPatientId(Guid patientId)
+        {
+            List<Wearable> wearables = Wearables.FindAll(w => w.PatientId == patientId);
+            List<StressMeasurement> measurements = new List<StressMeasurement>();
+
+            foreach (Wearable wearable in wearables)
+            {
+                  IEnumerable<StressMeasurement> measurementsForWearable =
+                  from StressMeasurement measurement in StressMeasurements
+                  where (measurement.WearableId).Equals(wearable.Id)
+                  select measurement;
+
+                foreach(StressMeasurement measurement in measurementsForWearable)
+                {
+                    measurements.Add(measurement);
+                }
+            }
+            
+            return measurements;
         }
 
         //Get singular
@@ -211,6 +221,26 @@ namespace StressDataService
             return measurements.ToList();
         }
 
+        public List<HeartRateMeasurement> GetHeartRateMeasurementsByPatientId(Guid patientId)
+        {
+            List<Wearable> wearables = Wearables.FindAll(w => w.PatientId == patientId);
+            List<HeartRateMeasurement> measurements = new List<HeartRateMeasurement>();
+
+            foreach (Wearable wearable in wearables)
+            {
+                IEnumerable<HeartRateMeasurement> measurementsForWearable =
+                from HeartRateMeasurement measurement in StressMeasurements
+                where (measurement.WearableId).Equals(wearable.Id)
+                select measurement;
+
+                foreach (HeartRateMeasurement measurement in measurementsForWearable)
+                {
+                    measurements.Add(measurement);
+                }
+            }
+            return measurements;
+        }
+
         //Get singular
         public HeartRateMeasurement GetHeartRateMeasurementById(Guid id)
         {
@@ -284,6 +314,26 @@ namespace StressDataService
                  select measurement).ToList();
         }
 
+        public List<SkinConductanceMeasurement> GetSkinConductanceMeasurementsByPatientId(Guid patientId)
+        {
+            List<Wearable> wearables = Wearables.FindAll(w => w.PatientId == patientId);
+            List<SkinConductanceMeasurement> measurements = new List<SkinConductanceMeasurement>();
+
+            foreach (Wearable wearable in wearables)
+            {
+                IEnumerable<SkinConductanceMeasurement> measurementsForWearable =
+                from SkinConductanceMeasurement measurement in StressMeasurements
+                where (measurement.WearableId).Equals(wearable.Id)
+                select measurement;
+
+                foreach (SkinConductanceMeasurement measurement in measurementsForWearable)
+                {
+                    measurements.Add(measurement);
+                }
+            }
+            return measurements;
+        }
+
         //Get singular
         public SkinConductanceMeasurement GetSkinConductanceMeasurementById(Guid id)
         {
@@ -354,6 +404,25 @@ namespace StressDataService
                  select measurement).ToList();
         }
 
+        public List<SkinTemperatureMeasurement> GetSkinTemperatureMeasurementsByPatientId(Guid patientId)
+        {
+            List<Wearable> wearables = Wearables.FindAll(w => w.PatientId == patientId);
+            List<SkinTemperatureMeasurement> measurements = new List<SkinTemperatureMeasurement>();
+
+            foreach (Wearable wearable in wearables)
+            {
+                IEnumerable<SkinTemperatureMeasurement> measurementsForWearable =
+                from SkinTemperatureMeasurement measurement in StressMeasurements
+                where (measurement.WearableId).Equals(wearable.Id)
+                select measurement;
+
+                foreach (SkinTemperatureMeasurement measurement in measurementsForWearable)
+                {
+                    measurements.Add(measurement);
+                }
+            }
+            return measurements;
+        }
         //Get singular
         public SkinTemperatureMeasurement GetSkinTemperatureMeasurementById(Guid id)
         {

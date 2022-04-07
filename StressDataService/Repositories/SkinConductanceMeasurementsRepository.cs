@@ -37,6 +37,11 @@ namespace StressDataService.Repositories
             return database.GetSkinConductanceMeasurementById(id);
         }
 
+        public List<SkinConductanceMeasurement> GetMeasurementsByPatientId(Guid patientId)
+        {
+            return database.GetSkinConductanceMeasurementsByPatientId(patientId);
+        }
+
         //Insert
         public void InsertMeasurement(SkinConductanceMeasurement measurement)
         {
