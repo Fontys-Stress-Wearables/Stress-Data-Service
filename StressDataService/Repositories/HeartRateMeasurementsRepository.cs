@@ -31,6 +31,11 @@ namespace StressDataService.Repositories
             return database.GetHeartRateMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
         }
 
+        public List<HeartRateMeasurement> GetMeasurementsByPatientId(Guid patientId)
+        {
+            return database.GetHeartRateMeasurementsByPatientId(patientId);
+        }
+
         //Get singular
         public HeartRateMeasurement GetMeasurementById(Guid id)
         {

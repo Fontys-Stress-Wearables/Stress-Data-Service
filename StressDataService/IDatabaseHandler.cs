@@ -15,6 +15,8 @@ namespace StressDataService
         public List<StressMeasurement> GetStressMeasurementsByWearableId(Guid wearableId);
         public List<StressMeasurement> GetStressMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId);
 
+        public List<StressMeasurement> GetStressMeasurementsByPatientId(Guid patientId);
+
         //Get singular
         public StressMeasurement GetStressMeasurementById(Guid id);
 
@@ -37,6 +39,8 @@ namespace StressDataService
         public List<HeartRateMeasurement> GetAllHeartRateMeasurements();
         public List<HeartRateMeasurement> GetHeartRateMeasurementsByWearableId(Guid wearableId);
         public List<HeartRateMeasurement> GetHeartRateMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId);
+        public List<HeartRateMeasurement> GetHeartRateMeasurementsByPatientId(Guid patientId);
+
 
         //Get singular
         public HeartRateMeasurement GetHeartRateMeasurementById(Guid id);
@@ -60,6 +64,8 @@ namespace StressDataService
         public List<SkinConductanceMeasurement> GetAllSkinConductanceMeasurements();
         public List<SkinConductanceMeasurement> GetSkinConductanceMeasurementsByWearableId(Guid wearableId);
         public List<SkinConductanceMeasurement> GetSkinConductanceMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId);
+        public List<SkinConductanceMeasurement> GetSkinConductanceMeasurementsByPatientId(Guid patientId);
+
 
         //Get singular
         public SkinConductanceMeasurement GetSkinConductanceMeasurementById(Guid id);
@@ -82,6 +88,8 @@ namespace StressDataService
         public List<SkinTemperatureMeasurement> GetAllSkinTemperatureMeasurements();
         public List<SkinTemperatureMeasurement> GetSkinTemperatureMeasurementsByWearableId(Guid wearableId);
         public List<SkinTemperatureMeasurement> GetSkinTemperatureMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId);
+        public List<SkinTemperatureMeasurement> GetSkinTemperatureMeasurementsByPatientId(Guid patientId);
+
 
         //Get singular
         public SkinTemperatureMeasurement GetSkinTemperatureMeasurementById(Guid id);

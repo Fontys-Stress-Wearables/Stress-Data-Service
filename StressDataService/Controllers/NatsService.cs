@@ -23,8 +23,18 @@ public class NatsService : INatsService
         Options opts = ConnectionFactory.GetDefaultOptions();
 
         opts.Url = "nats://localhost:4222";
-        Console.WriteLine("Connected to the NATS Server");
-        return cf.CreateConnection(opts);
+        Console.WriteLine("Trying to connect to the NATS Server");
+
+        try
+        {
+            Console.WriteLine("Succesfully connected to the NATS server");
+            return cf.CreateConnection(opts);
+        }
+        catch
+        {
+            Console.WriteLine("Failed to connect to the NATS server");
+            return null;
+        }
     }
 
     public void Publish<T>(string target, T data)

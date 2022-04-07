@@ -31,6 +31,11 @@ namespace StressDataService.Repositories
             return database.GetSkinTemperatureMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
         }
 
+        public List<SkinTemperatureMeasurement> GetMeasurementsByPatientId(Guid patientId)
+        {
+            return database.GetSkinTemperatureMeasurementsByPatientId(patientId);
+        }
+
         //Get singular
         public SkinTemperatureMeasurement GetMeasurementById(Guid id)
         {

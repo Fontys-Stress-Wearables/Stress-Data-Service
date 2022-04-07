@@ -28,6 +28,13 @@ namespace StressDataService.Controllers
             return repository.GetAllMeasurements();
         }
 
+        // GET: /skinconductancemeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("patient/{patientId}")]
+        public List<SkinConductanceMeasurement> GetByPatientId(Guid patientId)
+        {
+            return repository.GetMeasurementsByPatientId(patientId);
+        }
+
 
         // GET /skinconductancemeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("{id}")]

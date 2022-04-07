@@ -30,6 +30,14 @@ namespace StressDataService.Controllers
             return repository.GetMeasurementsByWearableId(wearableId);
         }*/
 
+        // GET: /stressmeasurements
+        [HttpGet]
+        public List<StressMeasurement> Get()
+        {
+            _natsService.Publish("technical_health", "heartbeat");
+            return repository.GetAllMeasurements();
+        }
+
         // GET: /stressmeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
         public List<StressMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
@@ -37,12 +45,11 @@ namespace StressDataService.Controllers
             return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
         }
 
-        // GET: /stressmeasurements
-        [HttpGet]
-        public List<StressMeasurement> Get()
+        // GET: /stressmeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
+        [HttpGet("patient/{patientId}")]
+        public List<StressMeasurement> GetByPatientId(Guid patientId)
         {
-            _natsService.Publish("technical_health", "hearthbeat");
-            return repository.GetAllMeasurements();
+            return repository.GetMeasurementsByPatientId(patientId);
         }
 
         // GET /stressmeasurements/550e8400-e29b-41d4-a716-446655440000 
