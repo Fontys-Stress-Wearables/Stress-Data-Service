@@ -30,10 +30,7 @@ namespace StressDataService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDatabaseHandler, MockDatabase>();
-            services.AddSingleton<HeartRateMeasurementsRepository>();
-            services.AddSingleton<StressMeasurementsRepository>();
-            services.AddSingleton<SkinTemperatureMeasurementsRepository>();
-            services.AddSingleton<SkinConductanceMeasurementsRepository>();
+            services.AddSingleton<HeartRateVariabilityMeasurementsRepository>();
             services.AddSingleton<INatsService, NatsService>();
             services.AddControllers();
         

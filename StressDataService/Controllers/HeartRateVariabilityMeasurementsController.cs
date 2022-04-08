@@ -12,66 +12,66 @@ namespace StressDataService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class HeartRateMeasurementsController : ControllerBase
+    public class HeartRateVariabilityMeasurementsController : ControllerBase
     {
-        private readonly HeartRateMeasurementsRepository repository;
+        private readonly HeartRateVariabilityMeasurementsRepository repository;
 
-        public HeartRateMeasurementsController(HeartRateMeasurementsRepository repository)
+        public HeartRateVariabilityMeasurementsController(HeartRateVariabilityMeasurementsRepository repository)
         {
             this.repository = repository;
         }
 
-        // GET: /heartratemeasurements
+        // GET: /HeartRateVariabilitymeasurements
         [HttpGet]
-        public List<HeartRateMeasurement> Get()
+        public List<HeartRateVariabilityMeasurement> Get()
         {
             return repository.GetAllMeasurements();
         }
 
 
-        // GET: /heartratemeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
+        // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("patient/{patientId}")]
-        public List<HeartRateMeasurement> GetByPatientId(Guid patientId)
+        public List<HeartRateVariabilityMeasurement> GetByPatientId(Guid patientId)
         {
             return repository.GetMeasurementsByPatientId(patientId);
         }
 
-        /*// GET: /heartratemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
+        /*// GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
-        public List<HeartRateMeasurement> GetByWearableId(Guid wearableId)
+        public List<HeartRateVariabilityMeasurement> GetByWearableId(Guid wearableId)
         {
             return repository.GetMeasurementsByWearableId(wearableId);
         }*/
 
-        // GET: /heartratemeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
+        // GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
-        public List<HeartRateMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
+        public List<HeartRateVariabilityMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
         {
             return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
         }
 
-        // GET /heartratemeasurements/550e8400-e29b-41d4-a716-446655440000 
+        // GET /HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("{id}")]
-        public HeartRateMeasurement GetById(Guid id)
+        public HeartRateVariabilityMeasurement GetById(Guid id)
         {
             return repository.GetMeasurementById(id);
         }
 
-        // POST api/heartratemeasurements
+        // POST api/HeartRateVariabilitymeasurements
         [HttpPost]
         public void Post([FromBody] string value)
         {
             throw new NotImplementedException();
         }
 
-        // PUT api/heartratemeasurements
+        // PUT api/HeartRateVariabilitymeasurements
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
             throw new NotImplementedException();
         }
 
-        // DELETE api/heartratemeasurements/550e8400-e29b-41d4-a716-446655440000 
+        // DELETE api/HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
