@@ -52,13 +52,26 @@ namespace StressDataService
                 Wearables.Add(new Wearable(Patients[i].Id));
             }
 
-            DateTime timeStamp = DateTime.Now;
-            for (int i = 0; i < 100000; i++)
+            foreach(Wearable wearable in Wearables)
             {
-                timeStamp = timeStamp.AddSeconds(1);
+                DateTime timeStamp = DateTime.Today;
                 Random random = new Random();
-                int HeartRateVariability = random.Next(200, 1200);
-                HeartRateVariabilityMeasurements.Add(new HeartRateVariabilityMeasurement(Wearables[random.Next(0,10)].Id, timeStamp, HeartRateVariability));
+                int HeartRateVariability = random.Next(25, 75);
+
+                for (int i = 0; i < 96; i++)
+                {
+                    timeStamp = timeStamp.AddMinutes(15);
+                    HeartRateVariabilityMeasurements.Add(new HeartRateVariabilityMeasurement(wearable.Id, timeStamp, HeartRateVariability));
+                    HeartRateVariability += random.Next(-10, 10);
+                    if(HeartRateVariability < 20)
+                    {
+                        HeartRateVariability = random.Next(20, 30);
+                    }
+                    if(HeartRateVariability > 80)
+                    {
+                        HeartRateVariability = random.Next(70,80);
+                    }
+                }
             }
         }
 

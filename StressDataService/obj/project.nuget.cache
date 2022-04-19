@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jq52yr9ghwwuK8dndadC82OgOjPsH48luCSbtJTD8ihOYhqXrbbkV7N7YHVz+OKk7ut3AzTN1uqgr3pkj8lFBw==",
+  "dgSpecHash": "GMxTA54ipzG58v8dyGuiVF0gEBLmqkOjETTT0x8oJ64U0+BIymFKGKDriu7PMA6x3973zNpE2OsqdH5foyJilg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jorick\\OneDrive\\S6\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+  "projectFilePath": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jorick\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Jorick\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
