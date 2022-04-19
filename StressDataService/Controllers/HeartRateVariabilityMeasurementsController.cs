@@ -28,20 +28,12 @@ namespace StressDataService.Controllers
             return repository.GetAllMeasurements();
         }
 
-
         // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("patient/{patientId}")]
         public List<HeartRateVariabilityMeasurement> GetByPatientId(Guid patientId)
         {
             return repository.GetMeasurementsByPatientId(patientId);
         }
-
-        /*// GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("wearable/{wearableId}")]
-        public List<HeartRateVariabilityMeasurement> GetByWearableId(Guid wearableId)
-        {
-            return repository.GetMeasurementsByWearableId(wearableId);
-        }*/
 
         // GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
@@ -55,20 +47,6 @@ namespace StressDataService.Controllers
         public HeartRateVariabilityMeasurement GetById(Guid id)
         {
             return repository.GetMeasurementById(id);
-        }
-
-        // POST api/HeartRateVariabilitymeasurements
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        // PUT api/HeartRateVariabilitymeasurements
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-            throw new NotImplementedException();
         }
 
         // DELETE api/HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
