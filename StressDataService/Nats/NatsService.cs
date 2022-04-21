@@ -23,7 +23,7 @@ public class NatsService : INatsService
         ConnectionFactory cf = new ConnectionFactory();
         Options opts = ConnectionFactory.GetDefaultOptions();
 
-        opts.Url = "nats://localhost:4222";
+        opts.Url = "nats://host.docker.internal:4222";
         Console.WriteLine("Trying to connect to the NATS Server");
 
         try
