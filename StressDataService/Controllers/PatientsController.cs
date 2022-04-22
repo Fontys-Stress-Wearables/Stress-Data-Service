@@ -17,6 +17,7 @@ namespace StressDataService.Controllers
         {
             this.database = database;
         }
+
         // GET: <PatientsController>
         [HttpGet]
         public List<Patient> Get()
@@ -29,24 +30,6 @@ namespace StressDataService.Controllers
         public string Get(int id)
         {
             return "value";
-        }
-
-        // POST api/<PatientController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<PatientController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PatientController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
