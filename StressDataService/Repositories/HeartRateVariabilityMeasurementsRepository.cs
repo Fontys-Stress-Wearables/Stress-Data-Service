@@ -8,13 +8,12 @@ namespace StressDataService.Repositories
 {
     public class HeartRateVariabilityMeasurementsRepository
     {
-        private DatabaseHandler database = new DatabaseHandler();
-/*        private IDatabaseHandler database2;
+        private DatabaseHandler database;
 
-        public HeartRateVariabilityMeasurementsRepository(IDatabaseHandler database)
+        public HeartRateVariabilityMeasurementsRepository(DatabaseHandler database)
         {
-            this.database2 = database;
-        }*/
+            this.database = database;
+        }
 
         //Get collection
         public Task<List<HeartRateVariabilityMeasurement>> GetAllMeasurements()

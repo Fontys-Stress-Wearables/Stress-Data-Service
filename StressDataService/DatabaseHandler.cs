@@ -1,6 +1,7 @@
 ﻿using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Writes;
+using Microsoft.Extensions.Configuration;
 using StressDataService.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,18 @@ namespace StressDataService
     public class DatabaseHandler
     {
         // TODO: PUT THIS SOMEWHERE ELSE!!!!!!!
-        private const string token = "QRyklx_gnFqL5F4OT7Vsnu__24XF8xED-d8yISi7-5sqnRLQdAdAV3kwViwPmhwY7nf_LiZK0MAKlpBXTJpQHA==";
-        private const string bucket = "StressData";
-        private const string org = "SWSP";
-        private const string connectionString = "http://localhost:8086";
+        private string token;
+        private string bucket;
+        private string org;
+        private string connectionString;
+        
+
+        public DatabaseHandler(IConfiguration configuration) {
+            connectionString = configuration.GetSection("database")["connectionString"];
+            org = configuration.GetSection("database")["org"];
+            bucket = configuration.GetSection("database")["bucket"];
+            token = configuration.GetSection("database")["token"];
+        }
 
         private PointData CreatePoint(HeartRateVariabilityMeasurement measurement)
         {

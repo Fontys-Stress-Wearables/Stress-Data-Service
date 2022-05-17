@@ -33,8 +33,9 @@ namespace StressDataService
             services.AddSingleton<IDatabaseHandler, MockDatabase>();
             services.AddSingleton<HeartRateVariabilityMeasurementsRepository>();
             services.AddSingleton<INatsService, NatsService>();
+            services.AddSingleton<DatabaseHandler>();
             services.AddControllers();
-        
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -57,7 +58,7 @@ namespace StressDataService
                                   {
                                       builder.WithOrigins("https://localhost:3000",
                                                           "http://localhost:3000");// Origin => React App here  
-                              });
+                                  });
             });
         }
 
@@ -72,7 +73,7 @@ namespace StressDataService
                 app.UseSwaggerUI();
             }
 
-            
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
@@ -90,6 +91,6 @@ namespace StressDataService
             app.ApplicationServices.GetService<INatsService>();
         }
 
-        
+
     }
 }
