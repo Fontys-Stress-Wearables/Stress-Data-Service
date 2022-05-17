@@ -104,3 +104,25 @@ C:\Users\Jorick\Desktop\FHICT\GIT\Group project\Stress-Data-Service\StressDataSe
 C:\Users\Jorick\Desktop\FHICT\GIT\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.pdb
 C:\Users\Jorick\Desktop\FHICT\GIT\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\StressDataService.genruntimeconfig.cache
 C:\Users\Jorick\Desktop\FHICT\GIT\Group project\Stress-Data-Service\StressDataService\obj\Debug\net6.0\ref\StressDataService.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\CsvHelper.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\InfluxDB.Client.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\InfluxDB.Client.Core.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\JsonSubTypes.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\NATS.Client.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\NodaTime.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\NodaTime.Serialization.JsonNet.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\RestSharp.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\System.Reactive.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\s161109\source\repos\FHICT-S6-RB10\Stress-Data-Service\StressDataService\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

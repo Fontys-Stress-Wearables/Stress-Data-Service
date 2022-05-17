@@ -8,30 +8,31 @@ namespace StressDataService.Repositories
 {
     public class HeartRateVariabilityMeasurementsRepository
     {
-        private IDatabaseHandler database;
+        private DatabaseHandler database = new DatabaseHandler();
+/*        private IDatabaseHandler database2;
 
         public HeartRateVariabilityMeasurementsRepository(IDatabaseHandler database)
         {
-            this.database = database;
-        }
+            this.database2 = database;
+        }*/
 
         //Get collection
-        public List<HeartRateVariabilityMeasurement> GetAllMeasurements()
+        public Task<List<HeartRateVariabilityMeasurement>> GetAllMeasurements()
         {
             return database.GetAllHeartRateVariabilityMeasurements();
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsByWearableId(Guid wearableId)
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByWearableId(Guid wearableId)
         {
             return database.GetHeartRateVariabilityMeasurementsByWearableId(wearableId);
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsWithinTimePeriodByWearableId(DateTime periodStart, DateTime periodEnd, Guid wearableId)
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsWithinTimePeriodByWearableId(DateTime periodStart, DateTime periodEnd, Guid wearableId)
         {
             return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientId(Guid patientId)
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByPatientId(Guid patientId)
         {
             return database.GetHeartRateVariabilityMeasurementsByPatientId(patientId);
         }

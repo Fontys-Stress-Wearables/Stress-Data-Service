@@ -25,21 +25,28 @@ namespace StressDataService.Controllers
         [HttpGet]
         public List<HeartRateVariabilityMeasurement> Get()
         {
-            return repository.GetAllMeasurements();
+            return repository.GetAllMeasurements().Result;
         }
 
         // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("patient/{patientId}")]
         public List<HeartRateVariabilityMeasurement> GetByPatientId(Guid patientId)
         {
-            return repository.GetMeasurementsByPatientId(patientId);
+            return repository.GetMeasurementsByPatientId(patientId).Result;
         }
 
         // GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
         [HttpGet("wearable/{wearableId}")]
         public List<HeartRateVariabilityMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
         {
-            return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
+            return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId).Result;
+        }
+
+        //POST /HeartRateVariabilitymeasurements
+        [HttpPost]
+        public void Post(HeartRateVariabilityMeasurement measurementToAdd)
+        {
+            repository.InsertMeasurement(measurementToAdd);
         }
 
         // GET /HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
