@@ -25,6 +25,12 @@ namespace StressDataService.Controllers
             return database.GetPatients();
         }
 
+        [HttpGet("stressed/{belowValue}")]
+        public List<StressedPatientDTO> GetStressedPatients(int belowValue)
+        {
+            return database.GetStressedPatientsBelowValue(belowValue);
+        }
+
         // GET <PatientController>/5
         [HttpGet("{id}")]
         public string Get(int id)
