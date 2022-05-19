@@ -8,6 +8,8 @@ namespace StressDataService
 {
     public interface IDatabaseHandler
     {
+        public List<StressedPatientDTO> GetStressedPatientsBelowValue(int valueBelow);
+
         #region HeartRateVariabilityMeasurements
         //Get collection
         public List<HeartRateVariabilityMeasurement> GetAllHeartRateVariabilityMeasurements();
