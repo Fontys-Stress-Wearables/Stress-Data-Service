@@ -92,7 +92,7 @@ namespace StressDataService
                             patient.Id == wearable.PatientId);
                         if (patient != null)
                         {
-                            AllStressedPatientMeasurements.Add(new StressedPatientDTO(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability));
+                            AllStressedPatientMeasurements.Add(new StressedPatientDTO(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability, measurement.TimeStamp));
                         }
                     }
                 }
