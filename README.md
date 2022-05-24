@@ -2,7 +2,7 @@
 ## Port: 5031
 The service that is responsible for handling stress data and communicating with the stress measurements database.
 This service gets processed stress data from the Stress Algorithm Service, stores it in a database and is used by the Caregiver Dashboard to retrieve this stress data.
-Current endpoints are:
+## API endpoints
 ```
 /HeartRateVariabilityMeasurements
 ```
