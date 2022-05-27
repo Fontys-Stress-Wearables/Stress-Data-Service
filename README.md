@@ -4,7 +4,14 @@ The service that is responsible for handling stress data and communicating with 
 This service gets processed stress data from the Stress Algorithm Service, stores it in a database and is used by the Caregiver Dashboard to retrieve this stress data.
 ## API endpoints
 ```
-/HeartRateVariabilityMeasurements
+[HttpGET] GetByPatientId:
+/HeartRateVariabilityMeasurements/patient/{patientId}
+
+[HttpGet] GetByWearableIdWithinTimePeriod:
+/HeartRateVariabilityMeasurements/wearable/{wearableId}
+
+[HttpGet] GetById
+/HeartRateVariabilityMeasurements/{id}
 ```
 ## Nats
 The service subscribes to the following topics:
