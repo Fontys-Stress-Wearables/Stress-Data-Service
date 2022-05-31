@@ -19,19 +19,19 @@ namespace StressDataService
 
 
         //Get singular
-        public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id);
+        //public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id);
 
         //Insert
         public void InsertHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
 
         //Update
-        public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
+        //public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
 
         //Delete collection
-        public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
+        //public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
 
         //Delete singular
-        public void DeleteHeartRateVariabilityMeasurementById(Guid id);
+        //public void DeleteHeartRateVariabilityMeasurementById(Guid id);
 
         #endregion
 

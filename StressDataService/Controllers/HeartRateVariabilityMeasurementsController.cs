@@ -14,11 +14,20 @@ namespace StressDataService.Controllers
     [ApiController]
     public class HeartRateVariabilityMeasurementsController : ControllerBase
     {
+        private readonly INatsService nats;
         private readonly HeartRateVariabilityMeasurementsRepository repository;
 
-        public HeartRateVariabilityMeasurementsController(HeartRateVariabilityMeasurementsRepository repository)
+        public HeartRateVariabilityMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService nats)
         {
+            this.nats = nats;
             this.repository = repository;
+        }
+
+        [HttpGet("nats/simulate")]
+        public void SimulateNats()
+        {
+            this.nats.Publish("stress:created", new List<HeartRateVariabilityMeasurement>() { new HeartRateVariabilityMeasurement(Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, 250) });
+
         }
 
         // GET: /HeartRateVariabilitymeasurements
@@ -43,17 +52,17 @@ namespace StressDataService.Controllers
         }
 
         // GET /HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
         public HeartRateVariabilityMeasurement GetById(Guid id)
         {
             return repository.GetMeasurementById(id);
-        }
+        }*/
 
         // DELETE api/HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public void Delete(Guid id)
         {
             repository.DeleteMeasurementById(id);
-        }
+        }*/
     }
 }

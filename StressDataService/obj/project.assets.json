@@ -2070,7 +2070,7 @@
       ]
     },
     "System.Buffers/4.3.0": {
-      "sha512": "ratu44uTIHgeBeI0dE8DWvmXVBSo4u7ozRZZHOMmK/JPpYyo0dAfgSiHlpiObMQ5lEtEyIXA40sKRYg5J6A8uQ==",
+      "sha512": "Pcv2b27ffpu09pjN3PgbnQWYEdhOBcesYYsmQO/tZC8Imw74TJJ8X1j+/+Q7uWprz0/sQiUpuCmYsY1w5GSMvg==",
       "type": "package",
       "path": "system.buffers/4.3.0",
       "files": [
@@ -5236,23 +5236,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\s161109\\.nuget\\packages\\": {},
+    "C:\\Users\\Dust\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+      "projectUniqueName": "D:\\Documents\\Documents\\Fontys\\Software\\RB10\\SWSP\\Stress-Data-Service\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
       "projectName": "StressDataService",
-      "projectPath": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
-      "packagesPath": "C:\\Users\\s161109\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\obj\\",
+      "projectPath": "D:\\Documents\\Documents\\Fontys\\Software\\RB10\\SWSP\\Stress-Data-Service\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+      "packagesPath": "C:\\Users\\Dust\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Documents\\Fontys\\Software\\RB10\\SWSP\\Stress-Data-Service\\Stress-Data-Service\\StressDataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\s161109\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dust\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5313,7 +5313,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
