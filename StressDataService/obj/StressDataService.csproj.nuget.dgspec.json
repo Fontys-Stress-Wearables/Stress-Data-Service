@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {}
+    "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {
+    "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+        "projectUniqueName": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
         "projectName": "StressDataService",
-        "projectPath": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
-        "packagesPath": "C:\\Users\\s161109\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s161109\\source\\repos\\FHICT-S6-RB10\\Stress-Data-Service\\StressDataService\\obj\\",
+        "projectPath": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+        "packagesPath": "C:\\Users\\Jorick\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\s161109\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jorick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
