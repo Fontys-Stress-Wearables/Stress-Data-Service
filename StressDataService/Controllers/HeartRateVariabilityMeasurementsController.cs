@@ -12,14 +12,27 @@ namespace StressDataService.Controllers
     [ApiController]
     public class HeartRateVariabilityMeasurementsController : ControllerBase
     {
-        static INatsService _natsService;
-
+        private readonly INatsService nats;
         private readonly HeartRateVariabilityMeasurementsRepository repository;
 
-        public HeartRateVariabilityMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService natsService)
+        public HeartRateVariabilityMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService nats)
         {
+            this.nats = nats;
             this.repository = repository;
-            _natsService = natsService;
+        }
+
+        [HttpGet("nats/simulate")]
+        public void SimulateNats()
+        {
+            this.nats.Publish("stress:created", new List<HeartRateVariabilityMeasurement>() { new HeartRateVariabilityMeasurement(Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, 250) });
+
+        }
+
+        // GET: /HeartRateVariabilitymeasurements
+        [HttpGet]
+        public List<HeartRateVariabilityMeasurement> Get()
+        {
+            return repository.GetAllMeasurements();
         }
 
         // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
@@ -30,11 +43,11 @@ namespace StressDataService.Controllers
             try
             {
                 measurements = repository.GetMeasurementsByPatientId(patientId);
-                _natsService.Publish("th_logs", "Stress measurements were retrieved for patientId: " + patientId);
+                nats.Publish("th_logs", "Stress measurements were retrieved for patientId: " + patientId);
             } 
             catch (Exception ex)
             {
-                _natsService.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId + " - " + ex.Message);
+                nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId + " - " + ex.Message);
                 measurements = null;
             }
             return measurements;
@@ -51,7 +64,7 @@ namespace StressDataService.Controllers
             }
             catch (Exception ex)
             {
-                _natsService.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for wearableId: " + wearableId + 
+                nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for wearableId: " + wearableId + 
                     " between timestamps: " + startTime + " / " + endTime + " - " + ex.Message);
                 measurements = null;
             }
@@ -59,7 +72,7 @@ namespace StressDataService.Controllers
         }
 
         // GET /HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
         public HeartRateVariabilityMeasurement GetById(Guid id)
         {
             HeartRateVariabilityMeasurement measurement;
@@ -73,10 +86,10 @@ namespace StressDataService.Controllers
                 measurement = null;
             }
             return measurement;
-        }
+        }*/
 
         // DELETE api/HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public void Delete(Guid id)
         {
             try
@@ -87,6 +100,6 @@ namespace StressDataService.Controllers
             {
                 _natsService.Publish("th_warnings", "Something went wrong when attempting to get delete measurement by id: " + id + " - " + ex.Message);
             }
-        }
+        }*/
     }
 }
