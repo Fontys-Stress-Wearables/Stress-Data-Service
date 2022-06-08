@@ -132,12 +132,15 @@ namespace StressDataService
             return measurements.ToList();
         }
 
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId)
+        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, string date)
         {
             IEnumerable<HeartRateVariabilityMeasurement> measurements =
                from HeartRateVariabilityMeasurement measurement in HeartRateVariabilityMeasurements
-               where (measurement.WearableId).Equals(wearableId) && measurement.TimeStamp >= periodStartTime && measurement.TimeStamp <= periodEndTime
+               where (measurement.PatientId).Equals(patientId) && measurement.TimeStamp.ToString("dd-MM-yyyy").Contains(date)
                select measurement;
+            List<HeartRateVariabilityMeasurement> measurements2 = new List<HeartRateVariabilityMeasurement>();
+            measurements2 = measurements.ToList();
+            measurements2.Count();
             return measurements.ToList();
         }
 

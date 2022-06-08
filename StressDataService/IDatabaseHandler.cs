@@ -14,7 +14,7 @@ namespace StressDataService
         //Get collection
         public List<HeartRateVariabilityMeasurement> GetAllHeartRateVariabilityMeasurements();
         public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId);
+        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, string date);
         public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientId(Guid patientId);
 
 

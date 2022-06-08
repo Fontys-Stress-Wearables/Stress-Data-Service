@@ -26,9 +26,9 @@ namespace StressDataService.Repositories
             return database.GetHeartRateVariabilityMeasurementsByWearableId(wearableId);
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsWithinTimePeriodByWearableId(DateTime periodStart, DateTime periodEnd, Guid wearableId)
+        public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientIdAndDate(Guid patientId, string date)
         {
-            return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
+            return database.GetHeartRateVariabilityMeasurementsByPatientIdAndDate(patientId, date);
         }
 
         public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientId(Guid patientId)

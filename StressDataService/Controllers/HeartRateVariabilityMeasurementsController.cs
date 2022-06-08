@@ -54,18 +54,18 @@ namespace StressDataService.Controllers
         }
 
         // GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("wearable/{wearableId}")]
-        public List<HeartRateVariabilityMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
+        [HttpGet("patient/{patientId}/timeframe/{date}")]
+        public List<HeartRateVariabilityMeasurement> GetByPatientIdAndDate(Guid patientId, string date)
         {
             List<HeartRateVariabilityMeasurement> measurements;
             try
             {
-                measurements = repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId);
+                measurements = repository.GetMeasurementsByPatientIdAndDate(patientId, date);
             }
             catch (Exception ex)
             {
-                nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for wearableId: " + wearableId + 
-                    " between timestamps: " + startTime + " / " + endTime + " - " + ex.Message);
+                nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId + 
+                    " on date: " + date + " - " + ex.Message);
                 measurements = null;
             }
             return measurements;
