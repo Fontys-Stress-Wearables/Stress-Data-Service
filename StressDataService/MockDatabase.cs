@@ -12,6 +12,7 @@ namespace StressDataService
         public List<Patient> Patients { get; }
         public List<Wearable> Wearables { get; }
 
+
         public MockDatabase()
         {
             HeartRateVariabilityMeasurements = new List<HeartRateVariabilityMeasurement>();
@@ -54,11 +55,13 @@ namespace StressDataService
 
             foreach(Wearable wearable in Wearables)
             {
+                int daysToGenerateDataFor = 30;
+
                 DateTime timeStamp = DateTime.Today;
                 Random random = new Random();
                 int HeartRateVariability = random.Next(25, 75);
 
-                for (int i = 0; i < 96; i++)
+                for (int i = 0; i < 96 * daysToGenerateDataFor; i++)
                 {
                     timeStamp = timeStamp.AddMinutes(15);
                     HeartRateVariabilityMeasurements.Add(new HeartRateVariabilityMeasurement(wearable.PatientId, wearable.Id, timeStamp, HeartRateVariability));
