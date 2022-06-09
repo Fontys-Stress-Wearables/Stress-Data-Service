@@ -56,9 +56,8 @@ namespace StressDataService
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("https://localhost:3000",
-                                                          "http://localhost:3000");// Origin => React App here  
-                                  });
+                                      builder.AllowAnyOrigin();// Origin => React App here  
+                              });
             });
         }
 
@@ -73,7 +72,7 @@ namespace StressDataService
                 app.UseSwaggerUI();
             }
 
-
+            
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
@@ -91,6 +90,6 @@ namespace StressDataService
             app.ApplicationServices.GetService<INatsService>();
         }
 
-
+        
     }
 }

@@ -75,6 +75,47 @@ namespace StressDataService
             }
         }
 
+        public List<StressedPatientDTO> GetStressedPatientsBelowValue(int valueBelow)
+        {
+            List<StressedPatientDTO> stressedPatientMeasurements = new List<StressedPatientDTO>();
+            List<StressedPatientDTO> AllStressedPatientMeasurements = new List<StressedPatientDTO>();
+
+            foreach (HeartRateVariabilityMeasurement measurement in HeartRateVariabilityMeasurements)
+            {
+                if (measurement.HeartRateVariability <= valueBelow)
+                {
+                    Wearable wearable = Wearables.Find(wearable => wearable.Id == measurement.WearableId);
+                    if (wearable != null)
+                    {
+                        Patient patient = Patients
+                            .Find(patient =>
+                            patient.Id == wearable.PatientId);
+                        if (patient != null)
+                        {
+                            AllStressedPatientMeasurements.Add(new StressedPatientDTO(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability));
+                        }
+                    }
+                }
+            }
+            foreach (Patient patient in Patients)
+            {
+                List<StressedPatientDTO> patientMeasurements = AllStressedPatientMeasurements.FindAll(measurement => measurement.PatientId == patient.Id);
+                if (patientMeasurements != null && patientMeasurements.Count != 0)
+                {
+                    StressedPatientDTO lowestMeasurement = patientMeasurements.First();
+                    foreach (StressedPatientDTO stressedPatientMeasurement in patientMeasurements)
+                    {
+                        if(stressedPatientMeasurement.HeartRateVariability < lowestMeasurement.HeartRateVariability)
+                        {
+                            lowestMeasurement = stressedPatientMeasurement;
+                        }
+                    }
+                    stressedPatientMeasurements.Add(lowestMeasurement);
+                }
+            }
+            return stressedPatientMeasurements;
+        }
+
         #region HeartRateVariabilityMeasurements
         //Get collection
         public List<HeartRateVariabilityMeasurement> GetAllHeartRateVariabilityMeasurements()
