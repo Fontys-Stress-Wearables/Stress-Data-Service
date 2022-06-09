@@ -5236,23 +5236,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joric\\.nuget\\packages\\": {},
+    "C:\\Users\\Jorick\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joric\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+      "projectUniqueName": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
       "projectName": "StressDataService",
-      "projectPath": "C:\\Users\\joric\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
-      "packagesPath": "C:\\Users\\joric\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joric\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\obj\\",
+      "projectPath": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\StressDataService.csproj",
+      "packagesPath": "C:\\Users\\Jorick\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\joric\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jorick\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5317,5 +5317,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Jorick\\Desktop\\FHICT\\GIT\\Group project\\Stress-Data-Service\\StressDataService\\obj\\project.nuget.cache : Unexpected character encountered while parsing value: <. Path '', line 0, position 0."
+    }
+  ]
 }

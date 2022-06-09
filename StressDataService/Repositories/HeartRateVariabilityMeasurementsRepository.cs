@@ -27,8 +27,9 @@ namespace StressDataService.Repositories
         }
 
         public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsWithinTimePeriodByWearableId(DateTime periodStart, DateTime periodEnd, Guid wearableId)
+        public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientIdAndDate(Guid patientId, string date)
         {
-            return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
+            return database.GetHeartRateVariabilityMeasurementsByPatientIdAndDate(patientId, date);
         }
 
         public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByPatientId(Guid patientId)
@@ -37,10 +38,10 @@ namespace StressDataService.Repositories
         }
 
         //Get singular
-        public HeartRateVariabilityMeasurement GetMeasurementById(Guid id)
+        /*public HeartRateVariabilityMeasurement GetMeasurementById(Guid id)
         {
             return database.GetHeartRateVariabilityMeasurementById(id);
-        }
+        }*/
 
         //Insert
         public void InsertMeasurement(HeartRateVariabilityMeasurement measurement)
@@ -49,21 +50,21 @@ namespace StressDataService.Repositories
         }
 
         //Update
-        public void UpdateMeasurement(HeartRateVariabilityMeasurement measurement)
+        /*public void UpdateMeasurement(HeartRateVariabilityMeasurement measurement)
         {
             database.UpdateHeartRateVariabilityMeasurement(measurement);
-        }
+        }*/
 
         //Delete collection
-        public void DeleteMeasurementsByWearableId(Guid wearableId)
+        /*public void DeleteMeasurementsByWearableId(Guid wearableId)
         {
             database.DeleteHeartRateVariabilityMeasurementsByWearableId(wearableId);
-        }
+        }*/
 
         //Delete singular
-        public void DeleteMeasurementById(Guid measurementId)
+        /*public void DeleteMeasurementById(Guid measurementId)
         {
             database.DeleteHeartRateVariabilityMeasurementById(measurementId);
-        }
+        }*/
     }
 }

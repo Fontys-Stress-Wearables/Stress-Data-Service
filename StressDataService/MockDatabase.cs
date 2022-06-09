@@ -12,6 +12,7 @@ namespace StressDataService
         public List<Patient> Patients { get; }
         public List<Wearable> Wearables { get; }
 
+
         public MockDatabase()
         {
             HeartRateVariabilityMeasurements = new List<HeartRateVariabilityMeasurement>();
@@ -54,14 +55,16 @@ namespace StressDataService
 
             foreach(Wearable wearable in Wearables)
             {
+                int daysToGenerateDataFor = 30;
+
                 DateTime timeStamp = DateTime.Today;
                 Random random = new Random();
                 int HeartRateVariability = random.Next(25, 75);
 
-                for (int i = 0; i < 96; i++)
+                for (int i = 0; i < 96 * daysToGenerateDataFor; i++)
                 {
                     timeStamp = timeStamp.AddMinutes(15);
-                    HeartRateVariabilityMeasurements.Add(new HeartRateVariabilityMeasurement(wearable.Id, timeStamp, HeartRateVariability));
+                    HeartRateVariabilityMeasurements.Add(new HeartRateVariabilityMeasurement(wearable.PatientId, wearable.Id, timeStamp, HeartRateVariability));
                     HeartRateVariability += random.Next(-10, 10);
                     if(HeartRateVariability < 20)
                     {
@@ -92,7 +95,7 @@ namespace StressDataService
                             patient.Id == wearable.PatientId);
                         if (patient != null)
                         {
-                            AllStressedPatientMeasurements.Add(new StressedPatientDTO(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability));
+                            AllStressedPatientMeasurements.Add(new StressedPatientDTO(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability, measurement.TimeStamp));
                         }
                     }
                 }
@@ -132,12 +135,15 @@ namespace StressDataService
             return measurements.ToList();
         }
 
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId)
+        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, string date)
         {
             IEnumerable<HeartRateVariabilityMeasurement> measurements =
                from HeartRateVariabilityMeasurement measurement in HeartRateVariabilityMeasurements
-               where (measurement.WearableId).Equals(wearableId) && measurement.TimeStamp >= periodStartTime && measurement.TimeStamp <= periodEndTime
+               where (measurement.PatientId).Equals(patientId) && measurement.TimeStamp.ToString("dd-MM-yyyy").Contains(date)
                select measurement;
+            List<HeartRateVariabilityMeasurement> measurements2 = new List<HeartRateVariabilityMeasurement>();
+            measurements2 = measurements.ToList();
+            measurements2.Count();
             return measurements.ToList();
         }
 
@@ -161,15 +167,16 @@ namespace StressDataService
             return measurements;
         }
 
+
         //Get singular
-        public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id)
+        /*public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id)
         {
             IEnumerable<HeartRateVariabilityMeasurement> measurements =
                from HeartRateVariabilityMeasurement measurement in HeartRateVariabilityMeasurements
                where (measurement.Id).Equals(id)
                select measurement;
             return measurements.FirstOrDefault();
-        }
+        }*/
 
         //Insert
         public void InsertHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement)
@@ -178,7 +185,7 @@ namespace StressDataService
         }
 
         //Update
-        public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement)
+        /*public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement)
         {
             HeartRateVariabilityMeasurement oldMeasurement = GetHeartRateVariabilityMeasurementById(measurement.Id);
 
@@ -189,10 +196,10 @@ namespace StressDataService
 
             int index = HeartRateVariabilityMeasurements.IndexOf(oldMeasurement);
             HeartRateVariabilityMeasurements[index] = measurement;
-        }
+        }*/
 
         //Delete collection
-        public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId)
+        /*public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId)
         {
             List<HeartRateVariabilityMeasurement> measurements = GetHeartRateVariabilityMeasurementsByWearableId(wearableId);
 
@@ -200,15 +207,15 @@ namespace StressDataService
             {
                 DeleteHeartRateVariabilityMeasurementById(measurement.Id);
             }
-        }
+        }*/
 
         //Delete singular
-        public void DeleteHeartRateVariabilityMeasurementById(Guid id)
+        /*public void DeleteHeartRateVariabilityMeasurementById(Guid id)
         {
             HeartRateVariabilityMeasurement measurement = GetHeartRateVariabilityMeasurementById(id);
 
             HeartRateVariabilityMeasurements.Remove(measurement);
-        }
+        }*/
         #endregion
 
         #region Patients

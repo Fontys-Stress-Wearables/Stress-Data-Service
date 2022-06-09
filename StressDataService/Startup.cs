@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StressDataService.Repositories;
 using StressDataService.Nats;
+using StressDataService.Services;
 
 namespace StressDataService
 {
@@ -34,6 +35,7 @@ namespace StressDataService
             services.AddSingleton<HeartRateVariabilityMeasurementsRepository>();
             services.AddSingleton<INatsService, NatsService>();
             services.AddSingleton<DatabaseHandler>();
+            services.AddSingleton<ProcessedDataService>();
             services.AddControllers();
 
             services.AddSwaggerGen(options =>
@@ -88,6 +90,7 @@ namespace StressDataService
                 endpoints.MapControllers();
             });
             app.ApplicationServices.GetService<INatsService>();
+            app.ApplicationServices.GetService<ProcessedDataService>();
         }
 
         

@@ -14,24 +14,24 @@ namespace StressDataService
         //Get collection
         public List<HeartRateVariabilityMeasurement> GetAllHeartRateVariabilityMeasurements();
         public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId);
+        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, string date);
         public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientId(Guid patientId);
 
 
         //Get singular
-        public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id);
+        //public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id);
 
         //Insert
         public void InsertHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
 
         //Update
-        public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
+        //public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
 
         //Delete collection
-        public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
+        //public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
 
         //Delete singular
-        public void DeleteHeartRateVariabilityMeasurementById(Guid id);
+        //public void DeleteHeartRateVariabilityMeasurementById(Guid id);
 
         #endregion
 
