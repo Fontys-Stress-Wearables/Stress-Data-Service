@@ -8,9 +8,9 @@ namespace StressDataService.Repositories
 {
     public class HeartRateVariabilityMeasurementsRepository
     {
-        private DatabaseHandler database;
+        private InfluxDBHandler database;
 
-        public HeartRateVariabilityMeasurementsRepository(DatabaseHandler database)
+        public HeartRateVariabilityMeasurementsRepository(InfluxDBHandler database)
         {
             this.database = database;
         }
@@ -27,9 +27,16 @@ namespace StressDataService.Repositories
         }
 
         public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsWithinTimePeriodByWearableId(DateTime periodStart, DateTime periodEnd, Guid wearableId)
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientIdAndDate(Guid patientId, string date)
         {
-            return database.GetHeartRateVariabilityMeasurementsByPatientIdAndDate(patientId, date);
+            return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
+        }
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsWithinTimePeriodByPatientId(DateTime periodStart, DateTime periodEnd, Guid patientId)
+        {
+            return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByPatientId(periodStart, periodEnd, patientId);
+        }
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByPatientIdAndDate(Guid patientId, string date)
+        {
+            return database.GetHeartRateVariabilityMeasurementsByPatientIdAndDate(patientId, DateTime.Parse(date));
         }
 
         public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByPatientId(Guid patientId)

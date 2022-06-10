@@ -16,8 +16,7 @@ namespace StressDataService.Models
         {
 
         }
-        public HeartRateVariabilityMeasurement(Guid wearableId, DateTime timeStamp, float heartRateVariability)
-        public HeartRateVariabilityMeasurement(Guid patientId, Guid wearableId, DateTime timeStamp, int heartRateVariability)
+        public HeartRateVariabilityMeasurement(Guid patientId, Guid wearableId, DateTime timeStamp, float heartRateVariability)
         {
             PatientId = patientId;
             WearableId = wearableId;
