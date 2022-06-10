@@ -18,14 +18,15 @@ namespace StressDataService
         private string bucket;
         private string org;
         private string connectionString;
-        
 
-        public InfluxDBHandler(IConfiguration configuration) {
+        IDatabaseHandler mockDatabase;
+
+        public InfluxDBHandler(IConfiguration configuration, IDatabaseHandler _mockDatabase ) {
             connectionString = configuration.GetSection("database")["connectionString"];
             org = configuration.GetSection("database")["org"];
             bucket = configuration.GetSection("database")["bucket"];
             token = configuration.GetSection("database")["token"];
-
+            mockDatabase = _mockDatabase;
             Seed();
         }
 
@@ -43,7 +44,7 @@ namespace StressDataService
             }
 
             // Fill database
-            List<Wearable> wearables = MockDatabase.getWearables();
+            List<Wearable> wearables = mockDatabase.GetWearables();
             Random random = new Random(DateTime.Now.Second);
 
             List<HeartRateVariabilityMeasurement> measurements = new List<HeartRateVariabilityMeasurement>();

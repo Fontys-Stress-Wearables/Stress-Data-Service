@@ -23,7 +23,7 @@ namespace StressDataService
             Seed();
         }
 
-        public static List<Wearable> getWearables()
+        public List<Wearable> GetWearables()
         {
             return Wearables;
         }
