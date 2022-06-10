@@ -42,7 +42,7 @@ namespace StressDataService
             {
                 return;
             }
-
+            
             // Fill database
             List<Wearable> wearables = mockDatabase.GetWearables();
             Random random = new Random(DateTime.Now.Second);
@@ -51,18 +51,18 @@ namespace StressDataService
 
             wearables.ForEach(wearable =>
             {
-                DateTime date = DateTime.Now;
+                DateTime date = DateTime.UtcNow;
 
                 for (int i = 0; i < pointCount; i++)
                 {
-                    measurements.Add(new HeartRateVariabilityMeasurement(wearable.PatientId, wearable.Id, DateTime.Now, random.Next(minStress, maxStress)));
-                    date = date.AddHours(-1);
+                    measurements.Add(new HeartRateVariabilityMeasurement(wearable.PatientId, wearable.Id, date, random.Next(minStress, maxStress)));
+                    date = date.AddHours(1);
                 }
             });
-
+            
             measurements.ForEach(measurement =>
             {
-                CreatePoint(measurement);
+                InsertHeartRateVariabilityMeasurement(measurement);
             });
         }
 
@@ -100,7 +100,6 @@ namespace StressDataService
         public async Task<List<HeartRateVariabilityMeasurement>> GetAllHeartRateVariabilityMeasurements()
         {
             using var client = InfluxDBClientFactory.Create(connectionString, token);
-
             var query = "from(bucket: \"StressData\") |> range(start: -100d)";
             var tables = await client.GetQueryApi().QueryAsync(query, org);
             foreach (var record in tables.SelectMany(table => table.Records))
