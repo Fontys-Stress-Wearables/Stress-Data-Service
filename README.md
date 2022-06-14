@@ -7,8 +7,8 @@ This service gets processed stress data from the Stress Algorithm Service, store
 [HttpGET] GetByPatientId:
 /HeartRateVariabilityMeasurements/patient/{patientId}
 
-[HttpGet] GetByWearableIdWithinTimePeriod:
-/HeartRateVariabilityMeasurements/wearable/{wearableId}
+[HttpGet] GetByPatientIdAndDate:
+/HeartRateVariabilityMeasurements/patient/{patientId}/timeframe/{date}
 
 [HttpGet] GetById
 /HeartRateVariabilityMeasurements/{id}
