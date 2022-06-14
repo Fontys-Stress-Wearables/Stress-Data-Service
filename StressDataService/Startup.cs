@@ -34,9 +34,10 @@ namespace StressDataService
             services.AddSingleton<IDatabaseHandler, MockDatabase>();
             services.AddSingleton<HeartRateVariabilityMeasurementsRepository>();
             services.AddSingleton<INatsService, NatsService>();
+            services.AddSingleton<InfluxDBHandler>();
             services.AddSingleton<ProcessedDataService>();
             services.AddControllers();
-        
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo

@@ -23,6 +23,11 @@ namespace StressDataService
             Seed();
         }
 
+        public List<Wearable> GetWearables()
+        {
+            return Wearables;
+        }
+
         private void Seed()
         {
             string[] maleNames = new string[10] { "aaron", "abdul", "abe", "abel", "abraham", "adam", "adan", "adolfo", "adolph", "adrian" };

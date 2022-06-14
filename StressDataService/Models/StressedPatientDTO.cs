@@ -8,10 +8,10 @@ namespace StressDataService.Models
         public string FirstName { get; set; }
         public string LastNamePrefix { get; set; }
         public string LastName { get; set; }
-        public int HeartRateVariability { get; set; }
+        public float HeartRateVariability { get; set; }
         public DateTime Timestamp { get; set; }
 
-        public StressedPatientDTO(Guid _patientId, string _firstName, string _lastNamePrefix, string _lastName, int _heartRateVariability, DateTime _timestamp)
+        public StressedPatientDTO(Guid _patientId, string _firstName, string _lastNamePrefix, string _lastName, float _heartRateVariability, DateTime _timestamp)
         {
             PatientId = _patientId;
             FirstName = _firstName;

@@ -10,6 +10,8 @@ namespace StressDataService
     {
         public List<StressedPatientDTO> GetStressedPatientsBelowValue(int valueBelow);
 
+        public List<Wearable> GetWearables();
+
         #region HeartRateVariabilityMeasurements
         //Get collection
         public List<HeartRateVariabilityMeasurement> GetAllHeartRateVariabilityMeasurements();

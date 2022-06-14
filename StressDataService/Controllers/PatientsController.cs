@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using StressDataService.Models;
 using System.Collections.Generic;
 using System;
@@ -29,6 +30,19 @@ namespace StressDataService.Controllers
         public List<StressedPatientDTO> GetStressedPatients(int belowValue)
         {
             return database.GetStressedPatientsBelowValue(belowValue);
+
+            //// Get list of stressed patient ID's
+            //List<HeartRateVariabilityMeasurement> stressedMeasurement = stressDatabase.GetStressedPatientsBelowValue(belowValue);
+
+            //// Find users who belong to these ID's
+            //List<StressedPatientDTO> stressedPatients = new List<string>();
+            //stressedMeasurement.ForEach(measurement =>
+            //{
+            //    Patient patient = database.GetPatientById(measurement.PatientId);
+            //    stressedPatients.Add(new StressedPatientDTO(measurement.PatientId, patient.Name, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability, measurement.Timestamp));
+            //});
+
+            //return stress;
         }
 
         // GET <PatientController>/5

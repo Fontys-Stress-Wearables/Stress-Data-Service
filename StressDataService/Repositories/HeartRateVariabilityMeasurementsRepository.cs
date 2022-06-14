@@ -8,30 +8,38 @@ namespace StressDataService.Repositories
 {
     public class HeartRateVariabilityMeasurementsRepository
     {
-        private IDatabaseHandler database;
+        private InfluxDBHandler database;
 
-        public HeartRateVariabilityMeasurementsRepository(IDatabaseHandler database)
+        public HeartRateVariabilityMeasurementsRepository(InfluxDBHandler database)
         {
             this.database = database;
         }
 
         //Get collection
-        public List<HeartRateVariabilityMeasurement> GetAllMeasurements()
+        public Task<List<HeartRateVariabilityMeasurement>> GetAllMeasurements()
         {
             return database.GetAllHeartRateVariabilityMeasurements();
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsByWearableId(Guid wearableId)
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByWearableId(Guid wearableId)
         {
             return database.GetHeartRateVariabilityMeasurementsByWearableId(wearableId);
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientIdAndDate(Guid patientId, string date)
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsWithinTimePeriodByWearableId(DateTime periodStart, DateTime periodEnd, Guid wearableId)
         {
-            return database.GetHeartRateVariabilityMeasurementsByPatientIdAndDate(patientId, date);
+            return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(periodStart, periodEnd, wearableId);
+        }
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsWithinTimePeriodByPatientId(DateTime periodStart, DateTime periodEnd, Guid patientId)
+        {
+            return database.GetHeartRateVariabilityMeasurementsWithinTimePeriodByPatientId(periodStart, periodEnd, patientId);
+        }
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByPatientIdAndDate(Guid patientId, string date)
+        {
+            return database.GetHeartRateVariabilityMeasurementsByPatientIdAndDate(patientId, DateTime.Parse(date));
         }
 
-        public List<HeartRateVariabilityMeasurement> GetMeasurementsByPatientId(Guid patientId)
+        public Task<List<HeartRateVariabilityMeasurement>> GetMeasurementsByPatientId(Guid patientId)
         {
             return database.GetHeartRateVariabilityMeasurementsByPatientId(patientId);
         }
