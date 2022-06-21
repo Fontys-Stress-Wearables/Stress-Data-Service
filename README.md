@@ -24,15 +24,15 @@ services:
       database_org: "SWSP"
       database_bucket: "StressData"
 ```
-Then go to http://localhost:8086, and set up the credentials there, and create an organisation with a bucket
-and after that, the credentials need to be added to the secrets, or appsettings.json file, or the environment
-these are:
+Then go to http://localhost:8086, and set up the credentials there, create an organisation with a bucket named "StressData"
+and then generate an API token with read/write access which can later be used in the configuration.
+The credentials that need to be added to the secrets, appsettings.json file or the environment are:
 ```
 "database": {
     "connectionString": "http://localhost:8086", //Or another port if you configure it another way
     "token": "{Token of the database}",
     "org": "SWSP", //Or whatever you name the organisation
-    "bucket": "StressData" //Or whatever you name the bucket
+    "bucket": "StressData"
   }
   ```
   Afterwards, you should be able to run everything
