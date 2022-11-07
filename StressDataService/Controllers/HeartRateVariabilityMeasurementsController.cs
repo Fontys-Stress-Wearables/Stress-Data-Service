@@ -32,7 +32,9 @@ namespace StressDataService.Controllers
         [HttpGet]
         public List<HeartRateVariabilityMeasurement> Get()
         {
-            return repository.GetAllMeasurements().Result;
+            var measurements = repository.GetAllMeasurements();
+            var measurementResult = measurements.Result;
+            return measurementResult;
         }
 
         // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
