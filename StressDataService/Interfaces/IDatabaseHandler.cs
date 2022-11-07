@@ -6,6 +6,7 @@ using StressDataService.Models;
 
 namespace StressDataService
 {
+    // ToDo This needs a lot of cleaning
     public interface IDatabaseHandler
     {
         public List<StressedPatientDTO> GetStressedPatientsBelowValue(int valueBelow);
@@ -14,17 +15,17 @@ namespace StressDataService
 
         #region HeartRateVariabilityMeasurements
         //Get collection
-        public List<HeartRateVariabilityMeasurement> GetAllHeartRateVariabilityMeasurements();
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, string date);
-        public List<HeartRateVariabilityMeasurement> GetHeartRateVariabilityMeasurementsByPatientId(Guid patientId);
+        public List<HrvMeasurement> GetAllHeartRateVariabilityMeasurements();
+        public List<HrvMeasurement> GetHeartRateVariabilityMeasurementsByWearableId(Guid wearableId);
+        public List<HrvMeasurement> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, string date);
+        public List<HrvMeasurement> GetHeartRateVariabilityMeasurementsByPatientId(Guid patientId);
 
 
         //Get singular
         //public HeartRateVariabilityMeasurement GetHeartRateVariabilityMeasurementById(Guid id);
 
         //Insert
-        public void InsertHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);
+        public void InsertHeartRateVariabilityMeasurement(HrvMeasurement measurement);
 
         //Update
         //public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement);

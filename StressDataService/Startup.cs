@@ -12,7 +12,7 @@ namespace StressDataService
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        private const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -21,13 +21,16 @@ namespace StressDataService
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDatabaseHandler, MockDatabase>();
-            services.AddSingleton<HeartRateVariabilityMeasurementsRepository>();
+            services.AddSingleton<HrvMeasurementService>();
+            services.AddSingleton<HrvMeasurementRepository>();
+
             services.AddSingleton<INatsService, NatsService>();
             services.AddSingleton<InfluxDBHandler>();
+            services.AddSingleton<InfluxDBService>();
+
             services.AddSingleton<ProcessedDataService>();
             services.AddControllers();
 
@@ -44,15 +47,14 @@ namespace StressDataService
                         Url = new Uri("https://example.com/license")
                     }
                 });
-            }); //With the nuGet Package "Swashbuckle.AspNetCore" this should show a swagger document (Not yet installed since it needs .NET6 probably)
-
+            }); 
+            
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.AllowAnyOrigin();// Origin => React App here  
-                              });
+                options.AddPolicy(name: MyAllowSpecificOrigins, 
+                    builder => {
+                                    builder.AllowAnyOrigin();
+                    });
             });
         }
 
@@ -66,10 +68,9 @@ namespace StressDataService
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
             
             app.UseHttpsRedirection();
-
+            
             app.UseStaticFiles();
 
             app.UseCors(MyAllowSpecificOrigins);

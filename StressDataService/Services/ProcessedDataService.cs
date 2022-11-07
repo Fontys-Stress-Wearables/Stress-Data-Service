@@ -7,26 +7,26 @@ namespace StressDataService.Services
 {
     public class ProcessedDataService
     {
-        private readonly INatsService nats;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly HrvMeasurementRepository _repository;
 
-        public ProcessedDataService(INatsService nats, IServiceScopeFactory scopeFactory)
+        public ProcessedDataService(IServiceScopeFactory scopeFactory, HrvMeasurementRepository repository, INatsService nats)
         {
-            this.nats = nats;
-            this._scopeFactory = scopeFactory;
-            this.nats.Subscribe<NatsMessage<List<HeartRateVariabilityMeasurement>>>("stress:created", OnNewHRVData);
+            _scopeFactory = scopeFactory;
+            _repository = repository;
+            
+            nats.Subscribe<NatsMessage<List<HrvMeasurement>>>("stress:created", OnNewHRVData);
         }
 
-        public void OnNewHRVData(NatsMessage<List<HeartRateVariabilityMeasurement>> message)
+        private void OnNewHRVData(NatsMessage<List<HrvMeasurement>> message)
         {
-            List<HeartRateVariabilityMeasurement> hrvData = message.message;
+            List<HrvMeasurement> hrvData = message.message;
 
-            using (var Scope = _scopeFactory.CreateScope())
+            using (_scopeFactory.CreateScope())
             {
-                HeartRateVariabilityMeasurementsRepository repository = new HeartRateVariabilityMeasurementsRepository(Scope.ServiceProvider.GetRequiredService<InfluxDBHandler>());
                 hrvData.ForEach(data =>
                 {
-                    repository.InsertMeasurement(data);
+                    _repository.Create(data);
                 });
             }
         }

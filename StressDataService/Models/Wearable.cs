@@ -13,8 +13,7 @@ namespace StressDataService.Models
         public Wearable(Guid patientId)
         {
             Id = Guid.NewGuid();
-            this.PatientId = patientId;
+            PatientId = patientId;
         }
-
     }
 }

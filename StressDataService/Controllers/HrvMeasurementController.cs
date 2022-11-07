@@ -1,10 +1,11 @@
 ﻿using StressDataService.Models;
-using StressDataService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using StressDataService.Dtos;
+using StressDataService.Services;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StressDataService.Controllers
 {
@@ -13,113 +14,108 @@ namespace StressDataService.Controllers
     public class HrvMeasurementsController : ControllerBase
     {
         private readonly INatsService _nats;
-        private readonly HeartRateVariabilityMeasurementsRepository _repository;
+        private readonly HrvMeasurementService _hrvService;
 
-        public HrvMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService nats)
+        public HrvMeasurementsController(HrvMeasurementService hrvService, INatsService nats)
         {
-            this._nats = nats;
-            this._repository = repository;
+            _nats = nats;
+            _hrvService = hrvService;
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<HrvMeasurementDto>>> GetAll()
+        {
+            var measurements = await _hrvService.GetAll();
+            
+            return Ok(measurements);
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<HrvMeasurementDto>> GetById(Guid id)
+        {
+            var measurement = await _hrvService.GetById(id);
+
+            if (measurement == null) return NotFound();
+        
+            return Ok(measurement);
+        }
+        
+        [HttpGet("patient/{patientId}")]
+        public async Task<ActionResult<List<HrvMeasurementDto>>> GetByPatientId(Guid patientId)
+        {
+            var measurements = await _hrvService.GetByPatientId(patientId);
+            
+            return Ok(measurements);
+        }
+        
+        [HttpGet("date/{patientId}")]
+        public async Task<ActionResult<IEnumerable<HrvMeasurementDto>>> GetByPatientIdAndDate(Guid patientId, DateTime date)
+        {
+            var measurements = await _hrvService.GetByPatientIdAndDate(patientId, date);
+
+            return Ok(measurements);
         }
 
+        [HttpGet("date/{patientId}/timespan")]
+        public async Task<ActionResult<IEnumerable<HrvMeasurementDto>>> GetByPatientIdAndTimespan(Guid patientId, DateTime startTime, DateTime endTime)
+        {
+            var measurements = await _hrvService.GetByPatientIdAndTimespan(patientId, startTime, endTime);
+
+            return Ok(measurements);
+        }
+        
+        [HttpGet("wearable/{wearableId}/timespan")]
+        public async Task<ActionResult<List<HrvMeasurement>>> GetByWearableIdAndTimespan(Guid wearableId, DateTime startTime, DateTime endTime)
+        {
+            var measurements = await _hrvService.GetByWearableIdAndTimespan(wearableId, startTime, endTime);
+
+            return Ok(measurements);
+        }
+
+        [HttpPost]
+        public ActionResult<HrvMeasurementDto> Create(CreateHrvMeasurementDto measurementDto)
+        {
+            var measurement = _hrvService.Create(measurementDto);
+            
+            return CreatedAtAction(nameof(GetById), new { id = measurement.Id }, measurement);
+        }
+        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, UpdateHrvMeasurementDto updateSprintDto)
+        {
+            var measurement = await _hrvService.Update(id, updateSprintDto);
+
+            if (measurement == null) return NotFound();
+
+            return NoContent();
+        }
+        
+        // ToDo Delete Implementation
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var sprint = await _hrvService.Delete(id);
+
+            if (sprint == null) return NotFound();
+
+            return NoContent();
+        }
+
+        // ToDo Delete All Ids from Wearable
+        // Todo Delete all Ids from Patient
+        
         [HttpGet("nats/simulate")]
         public void SimulateNats()
         {
-            this._nats.Publish("stress:created", new List<HeartRateVariabilityMeasurement>() { new HeartRateVariabilityMeasurement(Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, 250) });
-
+            var measurement = new HrvMeasurement
+            {
+                Id = Guid.NewGuid(),
+                PatientId = Guid.NewGuid(),
+                WearableId = Guid.NewGuid(),
+                TimeStamp = DateTime.Now,
+                HeartRateVariability = 250
+            };
+            _nats.Publish("stress:created", new List<HrvMeasurement>() { measurement });
         }
-
-        // GET: /HeartRateVariabilitymeasurements
-        [HttpGet]
-        public List<HeartRateVariabilityMeasurement> Get()
-        {
-            var measurements = _repository.GetAllMeasurements();
-            return measurements.Result;
-        }
-
-        // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("patient/{patientId}")]
-        public List<HeartRateVariabilityMeasurement> GetByPatientId(Guid patientId)
-        {
-            List<HeartRateVariabilityMeasurement> measurements;
-            try
-            {
-                measurements = _repository.GetMeasurementsByPatientId(patientId).Result;
-                _nats.Publish("th_logs", "Stress measurements were retrieved for patientId: " + patientId);
-            } 
-            catch (Exception ex)
-            {
-                _nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId + " - " + ex.Message);
-                measurements = null;
-            }
-            return measurements;
-        }
-
-        // GET: /HeartRateVariabilitymeasurements/wearable/550e8400-e29b-41d4-a716-446655440000 
-        [HttpGet("patient/{patientId}/timeframe/{date}")]
-        public List<HeartRateVariabilityMeasurement> GetByPatientIdAndDate(Guid patientId, string date)
-        {
-            List<HeartRateVariabilityMeasurement> measurements;
-            try
-            {
-                measurements = _repository.GetMeasurementsByPatientIdAndDate(patientId, date).Result;
-            }
-            catch (Exception ex)
-            {
-                _nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId +
-                    " on date: " + date + " - " + ex.Message);
-                measurements = null;
-            }
-            return measurements;
-        }
-        [HttpGet("wearable/{wearableId}")]
-        public List<HeartRateVariabilityMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
-        {
-            return _repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId).Result;
-        }
-
-        [HttpGet("patient/stressed/{belowValue}")]
-        public List<HeartRateVariabilityMeasurement> GetPatientIdsWithStressBelowValue(int belowValue)
-        {
-            return _repository.GetAllMeasurements().Result;
-            //TODO:implementation
-        }
-
-        //POST /HeartRateVariabilitymeasurements
-        [HttpPost]
-        public void Post(HeartRateVariabilityMeasurement measurementToAdd)
-        {
-            _repository.InsertMeasurement(measurementToAdd);
-        }
-
-        // GET /HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
-        /*[HttpGet("{id}")]
-        public HeartRateVariabilityMeasurement GetById(Guid id)
-        {
-            HeartRateVariabilityMeasurement measurement;
-            try
-            {
-                measurement = repository.GetMeasurementById(id);
-            }
-            catch (Exception ex)
-            {
-                _natsService.Publish("th_warnings", "Something went wrong when attempting to get stress measurement by id: " + id + " - " + ex.Message);
-                measurement = null;
-            }
-            return measurement;
-        }*/
-
-        // DELETE api/HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
-        /*[HttpDelete("{id}")]
-        public void Delete(Guid id)
-        {
-            try
-            {
-                repository.DeleteMeasurementById(id);
-            }
-            catch (Exception ex)
-            {
-                _natsService.Publish("th_warnings", "Something went wrong when attempting to get delete measurement by id: " + id + " - " + ex.Message);
-            }
-        }*/
     }
 }
