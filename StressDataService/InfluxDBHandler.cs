@@ -14,19 +14,19 @@ namespace StressDataService
     public class InfluxDBHandler
     {
         // TODO: PUT THIS SOMEWHERE ELSE!!!!!!!
-        private string token;
-        private string bucket;
-        private string org;
-        private string connectionString;
+        private readonly string _token;
+        private readonly string _bucket;
+        private readonly string _org;
+        private readonly string _connectionString;
 
-        IDatabaseHandler mockDatabase;
+        private readonly IDatabaseHandler _mockDatabase;
 
-        public InfluxDBHandler(IConfiguration configuration, IDatabaseHandler _mockDatabase ) {
-            connectionString = configuration.GetSection("database")["connectionString"];
-            org = configuration.GetSection("database")["org"];
-            bucket = configuration.GetSection("database")["bucket"];
-            token = configuration.GetSection("database")["token"];
-            mockDatabase = _mockDatabase;
+        public InfluxDBHandler(IConfiguration configuration, IDatabaseHandler mockDatabase ) {
+            _connectionString = configuration.GetSection("database")["connectionString"];
+            _org = configuration.GetSection("database")["org"];
+            _bucket = configuration.GetSection("database")["bucket"];
+            _token = configuration.GetSection("database")["token"];
+            _mockDatabase = mockDatabase;
             Seed();
         }
 
@@ -44,7 +44,7 @@ namespace StressDataService
             }
             
             // Fill database
-            List<Wearable> wearables = mockDatabase.GetWearables();
+            List<Wearable> wearables = _mockDatabase.GetWearables();
             Random random = new Random(DateTime.Now.Second);
 
             List<HeartRateVariabilityMeasurement> measurements = new List<HeartRateVariabilityMeasurement>();
@@ -99,9 +99,9 @@ namespace StressDataService
 
         public async Task<List<HeartRateVariabilityMeasurement>> GetAllHeartRateVariabilityMeasurements()
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
             var query = "from(bucket: \"StressData\") |> range(start: -100d)";
-            var tables = await client.GetQueryApi().QueryAsync(query, org);
+            var tables = await client.GetQueryApi().QueryAsync(query, _org);
             foreach (var record in tables.SelectMany(table => table.Records))
             {
                 Console.WriteLine($"{record}");
@@ -117,14 +117,14 @@ namespace StressDataService
 
         public async Task<List<HeartRateVariabilityMeasurement>> GetHeartRateVariabilityMeasurementsByPatientId(Guid patientId)
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
 
             var query = "from(bucket: \"StressData\")" +
                 " |> range(start: -365d)" +
                 "|> filter(fn: (r) => " +
                 "r.patient_id == \"" + patientId + "\")";
 
-            var tables = await client.GetQueryApi().QueryAsync(query, org);
+            var tables = await client.GetQueryApi().QueryAsync(query, _org);
 
             /// TODO: Remove below foreach after testing
             foreach (var record in tables.SelectMany(table => table.Records))
@@ -138,14 +138,14 @@ namespace StressDataService
 
         public async Task<List<HeartRateVariabilityMeasurement>> GetHeartRateVariabilityMeasurementsByWearableId(Guid wearableId)
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
 
             var query = "from(bucket: \"StressData\")" +
                                 " |> range(start: -365d)" +
                                 "|> filter(fn: (r) => " +
                                 "r.wearable_id == \"" + wearableId + "\")";
 
-            var tables = await client.GetQueryApi().QueryAsync(query, org);
+            var tables = await client.GetQueryApi().QueryAsync(query, _org);
 
             /// TODO: Remove below foreach after testing
             foreach (var record in tables.SelectMany(table => table.Records))
@@ -159,14 +159,14 @@ namespace StressDataService
 
         public async Task<List<HeartRateVariabilityMeasurement>> GetHeartRateVariabilityMeasurementsWithinTimePeriodByWearableId(DateTime periodStartTime, DateTime periodEndTime, Guid wearableId)
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
 
             var query = "from(bucket: \"StressData\")" +
                                 " |> range(start: " + periodStartTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ", stop: " + periodEndTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ")" +
                                 "|> filter(fn: (r) => " +
                                 "r.wearable_id == \"" + wearableId + "\")";
 
-            var tables = await client.GetQueryApi().QueryAsync(query, org);
+            var tables = await client.GetQueryApi().QueryAsync(query, _org);
 
             /// TODO: Remove below foreach after testing
             foreach (var record in tables.SelectMany(table => table.Records))
@@ -179,14 +179,14 @@ namespace StressDataService
         }
         public async Task<List<HeartRateVariabilityMeasurement>> GetHeartRateVariabilityMeasurementsWithinTimePeriodByPatientId(DateTime periodStartTime, DateTime periodEndTime, Guid patientId)
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
 
             var query = "from(bucket: \"StressData\")" +
                                 " |> range(start: " + periodStartTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ", stop: " + periodEndTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ")" +
                                 "|> filter(fn: (r) => " +
                                 "r.patient_id == \"" + patientId + "\")";
 
-            var tables = await client.GetQueryApi().QueryAsync(query, org);
+            var tables = await client.GetQueryApi().QueryAsync(query, _org);
 
             /// TODO: Remove below foreach after testing
             foreach (var record in tables.SelectMany(table => table.Records))
@@ -199,14 +199,14 @@ namespace StressDataService
         }
         public async Task<List<HeartRateVariabilityMeasurement>> GetHeartRateVariabilityMeasurementsByPatientIdAndDate(Guid patientId, DateTime date)
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
             DateTime dateWithoutTime = date.Date;
             var query = "from(bucket: \"StressData\")" +
                                 " |> range(start: " + dateWithoutTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ", stop: " + dateWithoutTime.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ssZ") + ")" +
                                 "|> filter(fn: (r) => " +
                                 "r.patient_id == \"" + patientId + "\")";
 
-            var tables = await client.GetQueryApi().QueryAsync(query, org);
+            var tables = await client.GetQueryApi().QueryAsync(query, _org);
 
             return tables.SelectMany(table =>
             ConvertTable(table.Records)).ToList();
@@ -214,11 +214,11 @@ namespace StressDataService
 
         public void InsertHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement)
         {
-            using var client = InfluxDBClientFactory.Create(connectionString, token);
+            using var client = InfluxDBClientFactory.Create(_connectionString, _token);
             var point = CreatePoint(measurement);
 
             using var writeApi = client.GetWriteApi();
-            writeApi.WritePoint(point, bucket, org);
+            writeApi.WritePoint(point, _bucket, _org);
         }
 
         public void UpdateHeartRateVariabilityMeasurement(HeartRateVariabilityMeasurement measurement)
