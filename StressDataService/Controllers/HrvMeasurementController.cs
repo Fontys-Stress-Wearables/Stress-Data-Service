@@ -10,12 +10,12 @@ namespace StressDataService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class HeartRateVariabilityMeasurementsController : ControllerBase
+    public class HrvMeasurementsController : ControllerBase
     {
         private readonly INatsService nats;
         private readonly HeartRateVariabilityMeasurementsRepository repository;
 
-        public HeartRateVariabilityMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService nats)
+        public HrvMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService nats)
         {
             this.nats = nats;
             this.repository = repository;
@@ -33,8 +33,7 @@ namespace StressDataService.Controllers
         public List<HeartRateVariabilityMeasurement> Get()
         {
             var measurements = repository.GetAllMeasurements();
-            var measurementResult = measurements.Result;
-            return measurementResult;
+            return measurements.Result;
         }
 
         // GET: /HeartRateVariabilitymeasurements/patient/550e8400-e29b-41d4-a716-446655440000 
