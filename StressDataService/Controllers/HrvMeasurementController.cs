@@ -4,25 +4,27 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace StressDataService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
     public class HrvMeasurementsController : ControllerBase
     {
-        private readonly INatsService nats;
-        private readonly HeartRateVariabilityMeasurementsRepository repository;
+        private readonly INatsService _nats;
+        private readonly HeartRateVariabilityMeasurementsRepository _repository;
 
         public HrvMeasurementsController(HeartRateVariabilityMeasurementsRepository repository, INatsService nats)
         {
-            this.nats = nats;
-            this.repository = repository;
+            this._nats = nats;
+            this._repository = repository;
         }
 
         [HttpGet("nats/simulate")]
         public void SimulateNats()
         {
-            this.nats.Publish("stress:created", new List<HeartRateVariabilityMeasurement>() { new HeartRateVariabilityMeasurement(Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, 250) });
+            this._nats.Publish("stress:created", new List<HeartRateVariabilityMeasurement>() { new HeartRateVariabilityMeasurement(Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, 250) });
 
         }
 
@@ -30,7 +32,7 @@ namespace StressDataService.Controllers
         [HttpGet]
         public List<HeartRateVariabilityMeasurement> Get()
         {
-            var measurements = repository.GetAllMeasurements();
+            var measurements = _repository.GetAllMeasurements();
             return measurements.Result;
         }
 
@@ -41,12 +43,12 @@ namespace StressDataService.Controllers
             List<HeartRateVariabilityMeasurement> measurements;
             try
             {
-                measurements = repository.GetMeasurementsByPatientId(patientId).Result;
-                nats.Publish("th_logs", "Stress measurements were retrieved for patientId: " + patientId);
+                measurements = _repository.GetMeasurementsByPatientId(patientId).Result;
+                _nats.Publish("th_logs", "Stress measurements were retrieved for patientId: " + patientId);
             } 
             catch (Exception ex)
             {
-                nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId + " - " + ex.Message);
+                _nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId + " - " + ex.Message);
                 measurements = null;
             }
             return measurements;
@@ -59,11 +61,11 @@ namespace StressDataService.Controllers
             List<HeartRateVariabilityMeasurement> measurements;
             try
             {
-                measurements = repository.GetMeasurementsByPatientIdAndDate(patientId, date).Result;
+                measurements = _repository.GetMeasurementsByPatientIdAndDate(patientId, date).Result;
             }
             catch (Exception ex)
             {
-                nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId +
+                _nats.Publish("th_warnings", "Something went wrong when attempting to get stress measurements for patientId: " + patientId +
                     " on date: " + date + " - " + ex.Message);
                 measurements = null;
             }
@@ -72,13 +74,13 @@ namespace StressDataService.Controllers
         [HttpGet("wearable/{wearableId}")]
         public List<HeartRateVariabilityMeasurement> GetByWearableIdWithinTimePeriod(Guid wearableId, DateTime startTime, DateTime endTime)
         {
-            return repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId).Result;
+            return _repository.GetMeasurementsWithinTimePeriodByWearableId(startTime, endTime, wearableId).Result;
         }
 
         [HttpGet("patient/stressed/{belowValue}")]
         public List<HeartRateVariabilityMeasurement> GetPatientIdsWithStressBelowValue(int belowValue)
         {
-            return repository.GetAllMeasurements().Result;
+            return _repository.GetAllMeasurements().Result;
             //TODO:implementation
         }
 
@@ -86,7 +88,7 @@ namespace StressDataService.Controllers
         [HttpPost]
         public void Post(HeartRateVariabilityMeasurement measurementToAdd)
         {
-            repository.InsertMeasurement(measurementToAdd);
+            _repository.InsertMeasurement(measurementToAdd);
         }
 
         // GET /HeartRateVariabilitymeasurements/550e8400-e29b-41d4-a716-446655440000 
