@@ -29,8 +29,7 @@ namespace StressDataService
             Seed();
         }
 
-        // ToDo Find a better place for seed method
-        public async void Seed()
+        private async void Seed()
         {
             const int minStress = 20;
             const int maxStress = 100;
@@ -55,15 +54,9 @@ namespace StressDataService
 
                 for (int i = 0; i < pointCount; i++)
                 {
-                    measurements.Add(new HrvMeasurement
-                    {
-                        Id = new Guid(),
-                        PatientId = wearable.PatientId,
-                        WearableId = wearable.PatientId,
-                        TimeStamp = date,
-                        HeartRateVariability = random.Next(minStress, maxStress)
-                    });
-                    
+                    /*
+                    measurements.Add(new HrvMeasurement(wearable.PatientId, wearable.Id, date, random.Next(minStress, maxStress)));
+                    */
                     date = date.AddHours(1);
                 }
             });
@@ -78,14 +71,13 @@ namespace StressDataService
         {
             return PointData
                 .Measurement("mem")
-                .Tag("id", measurement.Id.ToString())
                 .Tag("wearable_id", measurement.WearableId.ToString())
                 .Tag("patient_id", measurement.PatientId.ToString())
                 .Field("stress_level", measurement.HeartRateVariability)
                 .Timestamp(measurement.TimeStamp, WritePrecision.Ms);
         }
-
-        private IEnumerable<HrvMeasurement> ConvertTable(List<FluxRecord> records)
+        
+        public IEnumerable<HrvMeasurement> ConvertTable(List<FluxRecord> records)
         {
             return records.Select(record =>
                 new HrvMeasurement
@@ -96,8 +88,18 @@ namespace StressDataService
                     HeartRateVariability = float.Parse(record.GetValueByKey("_value").ToString())
                 });
         }
+        public void DeleteHeartRateVariabilityMeasurementById(Guid id)
+        {
 
-        private async Task<IEnumerable<HrvMeasurement>> GetAllHeartRateVariabilityMeasurements()
+            throw new NotImplementedException();
+        }
+
+        public void DeleteHeartRateVariabilityMeasurementsByWearableId(Guid wearableId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<HrvMeasurement>> GetAllHeartRateVariabilityMeasurements()
         {
             using var client = InfluxDBClientFactory.Create(_connectionString, _token);
             var query = "from(bucket: \"StressData\") |> range(start: -100d)";
@@ -111,13 +113,18 @@ namespace StressDataService
                 ConvertTable(table.Records));
         }
 
-        private void InsertHeartRateVariabilityMeasurement(HrvMeasurement measurement)
+        public void InsertHeartRateVariabilityMeasurement(HrvMeasurement measurement)
         {
             using var client = InfluxDBClientFactory.Create(_connectionString, _token);
             var point = CreatePoint(measurement);
 
             using var writeApi = client.GetWriteApi();
             writeApi.WritePoint(point, _bucket, _org);
+        }
+
+        public void UpdateHeartRateVariabilityMeasurement(HrvMeasurement measurement)
+        {
+            throw new NotImplementedException();
         }
     }
 }

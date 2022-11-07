@@ -61,8 +61,8 @@ public class HrvMeasurementRepository
     {
         var results = await _service.QueryAsync(async query =>
         {
-            var flux = $"from(bucket:\"{_bucket}\") |> range(start: 0)" +
-                        $"|> filter(fn: (r) => r.patient_id == \"{patientId}\")";
+            var flux = $"from(bucket:\"" + _bucket + "\") |> range(start: 0)" +
+                        $"|> filter(fn: (r) => r.patient_id == \"" + patientId + "\")";
             
             var tables = await query.QueryAsync(flux, _org);
             return tables.SelectMany(table =>
