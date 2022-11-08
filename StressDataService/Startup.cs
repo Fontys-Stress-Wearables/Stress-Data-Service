@@ -31,7 +31,7 @@ namespace StressDataService
             services.AddSingleton<INatsService, NatsService>();
             services.AddSingleton<InfluxDBHandler>();
             services.AddSingleton<InfluxDBService>();
-            services.AddSingleton<InfluxSeeder>();
+            services.AddSingleton<InfluxDbSeeder>();
 
             services.AddSingleton<ProcessedDataService>();
             services.AddControllers();
@@ -62,14 +62,14 @@ namespace StressDataService
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InfluxSeeder seeder)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InfluxDbSeeder dbSeeder)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                seeder.Seed();
+                dbSeeder.Seed();
             }
             
             app.UseHttpsRedirection();

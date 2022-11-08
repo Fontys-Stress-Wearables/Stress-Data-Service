@@ -6,7 +6,7 @@ using StressDataService.Repositories;
 
 namespace StressDataService.Database;
 
-public class InfluxSeeder
+public class InfluxDbSeeder
 {
     private readonly IDatabaseHandler _mockDatabase;
     private readonly HrvMeasurementRepository _hrvMeasurementRepository;
@@ -15,7 +15,7 @@ public class InfluxSeeder
     private const int MaxStress = 100;
     private const int PointCount = 10;
     
-    public InfluxSeeder(HrvMeasurementRepository hrvMeasurementRepository, IDatabaseHandler mockDatabase)
+    public InfluxDbSeeder(HrvMeasurementRepository hrvMeasurementRepository, IDatabaseHandler mockDatabase)
     {
         _mockDatabase = mockDatabase;
         _hrvMeasurementRepository = hrvMeasurementRepository;
