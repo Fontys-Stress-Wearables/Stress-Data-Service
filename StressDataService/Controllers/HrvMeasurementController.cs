@@ -91,7 +91,8 @@ namespace StressDataService.Controllers
             return NoContent();
         }
         
-        // ToDo Delete Implementation
+        // ToDo Delete all Ids from Wearable
+        // Also Delete All Ids from Patient
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -102,10 +103,7 @@ namespace StressDataService.Controllers
             return NoContent();
         }
 
-        // ToDo Delete All Ids from Wearable
-        // Todo Delete all Ids from Patient
-        
-        /*[HttpGet("nats/simulate")]
+        [HttpGet("nats/simulate")]
         public void SimulateNats()
         {
             var measurement = new HrvMeasurement
@@ -117,6 +115,6 @@ namespace StressDataService.Controllers
                 HeartRateVariability = 250
             };
             _nats.Publish("stress:created", new List<HrvMeasurement>() { measurement });
-        }*/
+        }
     }
 }
