@@ -61,8 +61,8 @@ public class HrvMeasurementRepository
     {
         var results = await _service.QueryAsync(async query =>
         {
-            var flux = $"from(bucket:\"" + _bucket + "\") |> range(start: 0)" +
-                        $"|> filter(fn: (r) => r.patient_id == \"" + patientId + "\")";
+            var flux = $"from(bucket:\"{_bucket}\") |> range(start: 0)" +
+                        $"|> filter(fn: (r) => r.patient_id == \"{patientId}\")";
             
             var tables = await query.QueryAsync(flux, _org);
             return tables.SelectMany(table =>
@@ -88,7 +88,7 @@ public class HrvMeasurementRepository
             var flux = $"from(bucket: \"{_bucket}\")" + 
                        " |> range(start: " + date.ToString("yyyy-MM-ddTHH:mm:ssZ") + 
                        ", stop: " + date.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ssZ") + ")" + 
-                       "|> filter(fn: (r) => r.patient_id == \"" + patientId + "\")";
+                       $"|> filter(fn: (r) => r.patient_id == \"{patientId}\")";
             
             var tables = await query.QueryAsync(flux, _org);
             return tables.SelectMany(table =>
@@ -106,7 +106,7 @@ public class HrvMeasurementRepository
             var flux = $"from(bucket: \"{_bucket}\")" +
                        " |> range(start: " + startTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + 
                        ", stop: " + endTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ")" +
-                       "|> filter(fn: (r) => r.wearable_id == \"" + patientId + "\")";
+                       $"|> filter(fn: (r) => r.patient_id == \"{patientId}\")";
             
             var tables = await query.QueryAsync(flux, _org);
             return tables.SelectMany(table =>
@@ -124,7 +124,7 @@ public class HrvMeasurementRepository
             var flux = $"from(bucket: \"{_bucket}\")" +
                        " |> range(start: " + startTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + 
                        ", stop: " + endTime.ToString("yyyy-MM-ddTHH:mm:ssZ") + ")" +
-                       "|> filter(fn: (r) => r.wearable_id == \"" + wearableId + "\")";
+                       $"|> filter(fn: (r) => r.wearable_id == \"{wearableId}\")";
             
             var tables = await query.QueryAsync(flux, _org);
             return tables.SelectMany(table =>
