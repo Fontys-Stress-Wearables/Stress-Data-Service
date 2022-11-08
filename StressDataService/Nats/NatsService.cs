@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Text;
 using NATS.Client;
@@ -5,20 +6,19 @@ using Newtonsoft.Json;
 
 namespace StressDataService.Nats;
 
-// ToDo Clean up
 public class NatsService : INatsService
 {
     private readonly IConnection? _connection;
     private IAsyncSubscription? _asyncSubscription;
-    private TechnicalHealthManager technicalHealthManager;
+    private TechnicalHealthManager _technicalHealthManager;
 
     public NatsService()
     {
         _connection = Connect();
-        technicalHealthManager = new TechnicalHealthManager(this);
+        _technicalHealthManager = new TechnicalHealthManager(this);
     }
 
-    public IConnection Connect()
+    public IConnection? Connect()
     {
         ConnectionFactory cf = new ConnectionFactory();
         Options opts = ConnectionFactory.GetDefaultOptions();
@@ -28,7 +28,7 @@ public class NatsService : INatsService
 
         try
         {
-            IConnection connection = cf.CreateConnection(opts);
+            IConnection? connection = cf.CreateConnection(opts);
             Console.WriteLine("Succesfully connected to the NATS server");
             return connection;  
         }
@@ -47,29 +47,19 @@ public class NatsService : INatsService
 
     public void Subscribe<T>(string target, Action<T> handler)
     {
-        EventHandler<MsgHandlerEventArgs> h = (sender, args) =>
+        void EventHandler(object? sender, MsgHandlerEventArgs args)
         {
-            // print the message
             string receivedMessage = Encoding.UTF8.GetString(args.Message.Data);
-            LogMessage(receivedMessage);
-
             var message = JsonConvert.DeserializeObject<T>(receivedMessage);
 
-            handler(message);
-        };
+            if (message != null) handler(message);
+        }
 
         _asyncSubscription = _connection?.SubscribeAsync(target);
         if (_asyncSubscription != null)
         {
-            _asyncSubscription.MessageHandler += h;
+            _asyncSubscription.MessageHandler += EventHandler;
             _asyncSubscription.Start();
-
-            Console.WriteLine("Subscribed to: " + target);
         }
-    }
-
-    private void LogMessage(string message)
-    {
-        Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fffffff")} - {message}");
     }
 }
