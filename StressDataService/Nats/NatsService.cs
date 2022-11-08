@@ -1,9 +1,9 @@
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using NATS.Client;
 using System;
 using System.Text;
-using StressDataService.Nats;
+using NATS.Client;
+using Newtonsoft.Json;
+
+namespace StressDataService.Nats;
 
 public class NatsService : INatsService
 {

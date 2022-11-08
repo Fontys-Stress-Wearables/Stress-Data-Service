@@ -3,10 +3,11 @@ using System.Threading.Tasks;
 using InfluxDB.Client;
 using InfluxDB.Client.Writes;
 using Microsoft.Extensions.Configuration;
+using StressDataService.Interfaces;
 
 namespace StressDataService.Services;
 
-public class InfluxDBService
+public class InfluxDbService
 {
     private readonly string _connectionString;
     private readonly string _token;
@@ -15,7 +16,7 @@ public class InfluxDBService
 
     private readonly IDatabaseHandler _mockDatabase;
 
-    public InfluxDBService(IConfiguration configuration, IDatabaseHandler mockDatabase)
+    public InfluxDbService(IConfiguration configuration, IDatabaseHandler mockDatabase)
     {
         _connectionString = configuration.GetSection("database")["connectionString"];
         _org = configuration.GetSection("database")["org"];

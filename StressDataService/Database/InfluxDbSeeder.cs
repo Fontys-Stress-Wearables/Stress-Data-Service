@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StressDataService.Interfaces;
 using StressDataService.Models;
 using StressDataService.Repositories;
 

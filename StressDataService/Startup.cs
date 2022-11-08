@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using StressDataService.Database;
+using StressDataService.Interfaces;
+using StressDataService.Nats;
 using StressDataService.Repositories;
 using StressDataService.Services;
 
@@ -30,7 +32,7 @@ namespace StressDataService
 
             services.AddSingleton<INatsService, NatsService>();
             services.AddSingleton<InfluxDBHandler>();
-            services.AddSingleton<InfluxDBService>();
+            services.AddSingleton<InfluxDbService>();
             services.AddSingleton<InfluxDbSeeder>();
 
             services.AddSingleton<ProcessedDataService>();

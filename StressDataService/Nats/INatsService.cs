@@ -1,5 +1,7 @@
-using NATS.Client;
 using System;
+using NATS.Client;
+
+namespace StressDataService.Nats;
 
 public interface INatsService
 {

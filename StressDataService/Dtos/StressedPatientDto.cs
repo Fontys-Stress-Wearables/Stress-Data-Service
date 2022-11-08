@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace StressDataService.Models
+namespace StressDataService.Dtos
 {
-    public class StressedPatientDTO
+    public class StressedPatientDto
     {
         public Guid PatientId { get; set; }
         public string FirstName { get; set; }
@@ -11,7 +11,7 @@ namespace StressDataService.Models
         public float HeartRateVariability { get; set; }
         public DateTime Timestamp { get; set; }
 
-        public StressedPatientDTO(Guid _patientId, string _firstName, string _lastNamePrefix, string _lastName, float _heartRateVariability, DateTime _timestamp)
+        public StressedPatientDto(Guid _patientId, string _firstName, string _lastNamePrefix, string _lastName, float _heartRateVariability, DateTime _timestamp)
         {
             PatientId = _patientId;
             FirstName = _firstName;

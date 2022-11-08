@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using StressDataService.Dtos;
 using StressDataService.Models;
 
-namespace StressDataService
+namespace StressDataService.Interfaces
 {
     // ToDo This needs a lot of cleaning
     public interface IDatabaseHandler
     {
-        public List<StressedPatientDTO> GetStressedPatientsBelowValue(int valueBelow);
+        public List<StressedPatientDto> GetStressedPatientsBelowValue(int valueBelow);
 
         public List<Wearable> GetWearables();
 

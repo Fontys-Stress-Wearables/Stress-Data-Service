@@ -2,6 +2,7 @@
 using StressDataService.Models;
 using StressDataService.Repositories;
 using System.Collections.Generic;
+using StressDataService.Nats;
 
 namespace StressDataService.Services
 {

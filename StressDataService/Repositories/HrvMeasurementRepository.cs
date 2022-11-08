@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Core.Flux.Domain;
 using InfluxDB.Client.Writes;
@@ -15,11 +14,11 @@ namespace StressDataService.Repositories;
 
 public class HrvMeasurementRepository
 {
-    private readonly InfluxDBService _service;
+    private readonly InfluxDbService _service;
     private readonly string _org;
     private readonly string _bucket;
     
-    public HrvMeasurementRepository(IConfiguration configuration, InfluxDBService service)
+    public HrvMeasurementRepository(IConfiguration configuration, InfluxDbService service)
     {
         _service = service;
         _org = configuration.GetSection("database")["org"];

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using StressDataService.Dtos;
+using StressDataService.Interfaces;
 using StressDataService.Models;
 
-namespace StressDataService
+namespace StressDataService.Database
 {
     public class MockDatabase : IDatabaseHandler
     {
@@ -91,10 +92,10 @@ namespace StressDataService
             }
         }
 
-        public List<StressedPatientDTO> GetStressedPatientsBelowValue(int valueBelow)
+        public List<StressedPatientDto> GetStressedPatientsBelowValue(int valueBelow)
         {
-            List<StressedPatientDTO> stressedPatientMeasurements = new List<StressedPatientDTO>();
-            List<StressedPatientDTO> AllStressedPatientMeasurements = new List<StressedPatientDTO>();
+            List<StressedPatientDto> stressedPatientMeasurements = new List<StressedPatientDto>();
+            List<StressedPatientDto> AllStressedPatientMeasurements = new List<StressedPatientDto>();
 
             foreach (HrvMeasurement measurement in HeartRateVariabilityMeasurements)
             {
@@ -108,18 +109,18 @@ namespace StressDataService
                             patient.Id == wearable.PatientId);
                         if (patient != null)
                         {
-                            AllStressedPatientMeasurements.Add(new StressedPatientDTO(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability, measurement.TimeStamp));
+                            AllStressedPatientMeasurements.Add(new StressedPatientDto(patient.Id, patient.FirstName, patient.LastNamePrefix, patient.LastName, measurement.HeartRateVariability, measurement.TimeStamp));
                         }
                     }
                 }
             }
             foreach (Patient patient in Patients)
             {
-                List<StressedPatientDTO> patientMeasurements = AllStressedPatientMeasurements.FindAll(measurement => measurement.PatientId == patient.Id);
+                List<StressedPatientDto> patientMeasurements = AllStressedPatientMeasurements.FindAll(measurement => measurement.PatientId == patient.Id);
                 if (patientMeasurements != null && patientMeasurements.Count != 0)
                 {
-                    StressedPatientDTO lowestMeasurement = patientMeasurements.First();
-                    foreach (StressedPatientDTO stressedPatientMeasurement in patientMeasurements)
+                    StressedPatientDto lowestMeasurement = patientMeasurements.First();
+                    foreach (StressedPatientDto stressedPatientMeasurement in patientMeasurements)
                     {
                         if(stressedPatientMeasurement.HeartRateVariability < lowestMeasurement.HeartRateVariability)
                         {

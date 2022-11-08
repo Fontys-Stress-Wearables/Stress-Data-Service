@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using StressDataService.Dtos;
 using StressDataService.Models;
+using StressDataService.Nats;
 using StressDataService.Repositories;
 
 namespace StressDataService.Services;

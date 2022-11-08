@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StressDataService.Models;
 using System.Collections.Generic;
+using StressDataService.Dtos;
+using StressDataService.Interfaces;
 
 
 namespace StressDataService.Controllers
@@ -23,7 +25,7 @@ namespace StressDataService.Controllers
         
         // ToDo Implementation of stressed patients 
         [HttpGet("stressed/{belowValue}")]
-        public List<StressedPatientDTO> GetStressedPatients(int belowValue)
+        public List<StressedPatientDto> GetStressedPatients(int belowValue)
         {
             return _database.GetStressedPatientsBelowValue(belowValue);
 
