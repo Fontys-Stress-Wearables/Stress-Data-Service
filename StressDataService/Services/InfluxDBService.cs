@@ -13,16 +13,13 @@ public class InfluxDbService
     private readonly string _token;
     private readonly string _bucket;
     private readonly string _org;
-
-    private readonly IMockDatabase _mockMockDatabase;
-
-    public InfluxDbService(IConfiguration configuration, IMockDatabase mockMockDatabase)
+    
+    public InfluxDbService(IConfiguration configuration)
     {
         _connectionString = configuration.GetSection("database")["connectionString"];
         _org = configuration.GetSection("database")["org"];
         _bucket = configuration.GetSection("database")["bucket"];
         _token = configuration.GetSection("database")["token"];
-        _mockMockDatabase = mockMockDatabase;
     }
 
     public void WritePoint(PointData pointData)

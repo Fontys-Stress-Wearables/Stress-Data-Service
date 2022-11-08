@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using StressDataService.Models;
 using System.Collections.Generic;
 using StressDataService.Dtos;
-using StressDataService.Interfaces;
 
 
 namespace StressDataService.Controllers
@@ -12,20 +10,7 @@ namespace StressDataService.Controllers
     [ApiController]
     public class PatientsController : ControllerBase
     {
-        private readonly IMockDatabase _mockDatabase;
-        public PatientsController(IMockDatabase mockDatabase)
-        {
-            _mockDatabase = mockDatabase;
-        }
-
-        //ToDo useful for debugging, should not be an actual endpoint
-        [HttpGet]
-        public List<Patient> Get()
-        {
-            return _mockDatabase.GetPatients();
-        }
         
-        // ToDo Implementation of stressed patients 
         [HttpGet("stressed/{belowValue}")]
         public List<StressedPatientDto> GetStressedPatients(int belowValue)
         {
