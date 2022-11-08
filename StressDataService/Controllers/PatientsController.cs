@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using StressDataService.Dtos;
+using StressDataService.Models;
 
 
 namespace StressDataService.Controllers
@@ -12,7 +12,7 @@ namespace StressDataService.Controllers
     {
         
         [HttpGet("stressed/{belowValue}")]
-        public List<StressedPatientDto> GetStressedPatients(int belowValue)
+        public List<Patient> GetStressedPatients(int belowValue)
         {
             throw new NotImplementedException();
 
