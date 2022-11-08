@@ -33,35 +33,16 @@ public class HrvMeasurementService
     
     public async Task<IEnumerable<HrvMeasurementDto>> GetByPatientId(Guid patientId)
     {
-        try
-        {
-            var measurements = await _hrvRepository.GetByPatientId(patientId);
-            _nats.Publish("th_logs", "Stress measurements were retrieved for patientId: " + patientId);
-            return measurements;
-        } 
-        catch (Exception ex)
-        {
-            _nats.Publish("th_warnings", 
-                "Something went wrong when attempting to get stress measurements for patientId: " 
-                + patientId + " - " + ex.Message);
-            return null;
-        }
+        var measurements = await _hrvRepository.GetByPatientId(patientId);
+        
+        return measurements;
     }
     
     public async Task<IEnumerable<HrvMeasurementDto>> GetByPatientIdAndDate(Guid patientId, DateTime date)
     {
-        try
-        {
-            var measurements = await _hrvRepository.GetByPatientIdAndDate(patientId, date);
-            return measurements;
-        }
-        catch (Exception ex)
-        {
-            _nats.Publish("th_warnings", 
-                "Something went wrong when attempting to get stress measurements for patientId: " 
-                + patientId + " on date: " + date + " - " + ex.Message);
-            return null;
-        }
+       var measurements = await _hrvRepository.GetByPatientIdAndDate(patientId, date);
+       
+       return measurements;
     }
     
     public async Task<IEnumerable<HrvMeasurementDto>> GetByPatientIdAndTimespan(Guid patientId, DateTime startTime, DateTime endTime)
