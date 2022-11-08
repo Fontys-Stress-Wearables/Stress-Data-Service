@@ -53,7 +53,7 @@ public class InfluxSeeder
                     HeartRateVariability = random.Next(MinStress, MaxStress)
                 });
 
-                date = date.AddDays(1);
+                date = date.AddHours(-1);
             }
         });
         return measurements;
