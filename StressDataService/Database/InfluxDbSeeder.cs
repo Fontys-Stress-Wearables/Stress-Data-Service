@@ -9,17 +9,19 @@ namespace StressDataService.Database;
 
 public class InfluxDbSeeder
 {
-    private readonly IDatabaseHandler _mockDatabase;
+    private readonly IMockDatabase _mockMockDatabase;
     private readonly HrvMeasurementRepository _hrvMeasurementRepository;
 
     private const int MinStress = 20;
     private const int MaxStress = 100;
     private const int PointCount = 10;
     
-    public InfluxDbSeeder(HrvMeasurementRepository hrvMeasurementRepository, IDatabaseHandler mockDatabase)
+    public InfluxDbSeeder(HrvMeasurementRepository hrvMeasurementRepository, IMockDatabase mockMockDatabase)
     {
-        _mockDatabase = mockDatabase;
+        _mockMockDatabase = mockMockDatabase;
         _hrvMeasurementRepository = hrvMeasurementRepository;
+        
+        Seed();
     }
 
     public async void Seed()
@@ -36,7 +38,7 @@ public class InfluxDbSeeder
     private List<HrvMeasurement> CreateData()
     {
         Random random = new Random(DateTime.Now.Second);
-        List<Wearable> wearables = _mockDatabase.GetWearables();
+        List<Wearable> wearables = _mockMockDatabase.GetWearables();
         List<HrvMeasurement> measurements = new List<HrvMeasurement>();
 
         wearables.ForEach(wearable =>

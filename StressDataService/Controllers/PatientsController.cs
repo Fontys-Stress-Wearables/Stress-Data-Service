@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using StressDataService.Models;
 using System.Collections.Generic;
 using StressDataService.Dtos;
@@ -11,23 +12,24 @@ namespace StressDataService.Controllers
     [ApiController]
     public class PatientsController : ControllerBase
     {
-        private readonly IDatabaseHandler _database;
-        public PatientsController(IDatabaseHandler database)
+        private readonly IMockDatabase _mockDatabase;
+        public PatientsController(IMockDatabase mockDatabase)
         {
-            this._database = database;
+            _mockDatabase = mockDatabase;
         }
 
+        //ToDo useful for debugging, should not be an actual endpoint
         [HttpGet]
         public List<Patient> Get()
         {
-            return _database.GetPatients();
+            return _mockDatabase.GetPatients();
         }
         
         // ToDo Implementation of stressed patients 
         [HttpGet("stressed/{belowValue}")]
         public List<StressedPatientDto> GetStressedPatients(int belowValue)
         {
-            return _database.GetStressedPatientsBelowValue(belowValue);
+            throw new NotImplementedException();
 
             //// Get list of stressed patient ID's
             //List<HeartRateVariabilityMeasurement> stressedMeasurement = stressDatabase.GetStressedPatientsBelowValue(belowValue);

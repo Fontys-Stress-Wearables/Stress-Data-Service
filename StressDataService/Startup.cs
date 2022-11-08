@@ -26,7 +26,7 @@ namespace StressDataService
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IDatabaseHandler, MockDatabase>();
+            services.AddSingleton<IMockDatabase, MockDatabase>();
             services.AddSingleton<HrvMeasurementService>();
             services.AddSingleton<HrvMeasurementRepository>();
 
