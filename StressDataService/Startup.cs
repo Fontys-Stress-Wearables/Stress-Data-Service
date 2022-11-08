@@ -31,7 +31,6 @@ namespace StressDataService
             services.AddSingleton<HrvMeasurementRepository>();
 
             services.AddSingleton<INatsService, NatsService>();
-            services.AddSingleton<InfluxDBHandler>();
             services.AddSingleton<InfluxDbService>();
             services.AddSingleton<InfluxDbSeeder>();
 
