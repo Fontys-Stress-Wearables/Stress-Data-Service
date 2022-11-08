@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using StressDataService.Interfaces;
 
 namespace StressDataService.Nats
 {

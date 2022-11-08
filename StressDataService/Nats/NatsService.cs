@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using NATS.Client;
 using Newtonsoft.Json;
+using StressDataService.Interfaces;
 
 namespace StressDataService.Nats;
 
