@@ -104,7 +104,7 @@ namespace StressDataService.Controllers
         // ToDo Delete All Ids from Wearable
         // Todo Delete all Ids from Patient
         
-        [HttpGet("nats/simulate")]
+        /*[HttpGet("nats/simulate")]
         public void SimulateNats()
         {
             var measurement = new HrvMeasurement
@@ -116,6 +116,6 @@ namespace StressDataService.Controllers
                 HeartRateVariability = 250
             };
             _nats.Publish("stress:created", new List<HrvMeasurement>() { measurement });
-        }
+        }*/
     }
 }
