@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 namespace StressDataService.Nats;
 
+// ToDo Clean up
 public class NatsService : INatsService
 {
     private readonly IConnection? _connection;

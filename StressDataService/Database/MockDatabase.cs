@@ -7,6 +7,7 @@ using StressDataService.Models;
 
 namespace StressDataService.Database
 {
+    // ToDo Clean up
     public class MockDatabase : IDatabaseHandler
     {
         public List<HrvMeasurement> HeartRateVariabilityMeasurements { get; }

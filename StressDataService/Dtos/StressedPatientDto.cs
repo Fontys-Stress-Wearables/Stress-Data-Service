@@ -2,6 +2,7 @@
 
 namespace StressDataService.Dtos
 {
+    // ToDo Convert to proper Dto or Model
     public class StressedPatientDto
     {
         public Guid PatientId { get; set; }

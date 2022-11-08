@@ -2,6 +2,7 @@
 
 namespace StressDataService.Nats
 {
+    // ToDo Clean up
     public class TechnicalHealthManager
     {
         static INatsService _natsService;

@@ -3,6 +3,7 @@ using NATS.Client;
 
 namespace StressDataService.Nats;
 
+// ToDo Clean up
 public interface INatsService
 {
     public IConnection Connect();

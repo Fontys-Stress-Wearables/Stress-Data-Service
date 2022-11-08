@@ -5,7 +5,7 @@ using StressDataService.Models;
 
 namespace StressDataService.Interfaces
 {
-    // ToDo This needs a lot of cleaning
+    // ToDo Clean up
     public interface IDatabaseHandler
     {
         public List<StressedPatientDto> GetStressedPatientsBelowValue(int valueBelow);
