@@ -41,7 +41,7 @@ public class NatsService : INatsService
 
     public void Publish<T>(string target, T data)
     {
-        var message = new NatsMessage<T> { target = target, message = data };
+        var message = new NatsMessage<T> { Target = target, Message = data };
         _connection?.Publish(target, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message)));
     }
 

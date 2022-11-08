@@ -21,7 +21,7 @@ namespace StressDataService.Services
 
         private void OnNewHRVData(NatsMessage<List<HrvMeasurement>> message)
         {
-            List<HrvMeasurement> hrvData = message.message;
+            List<HrvMeasurement> hrvData = message.Message;
 
             using (_scopeFactory.CreateScope())
             {

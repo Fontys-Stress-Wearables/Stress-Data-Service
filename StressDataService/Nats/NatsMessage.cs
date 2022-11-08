@@ -1,9 +1,8 @@
 namespace StressDataService.Nats;
 
-// ToDo Clean up
 public class NatsMessage<T>
 {
-    public string origin { get; set; } = "stress_data_service";
-    public string target { get; set; }
-    public T message { get; set; }
+    public string Origin { get; set; } = "stress_data_service";
+    public string Target { get; set; }
+    public T Message { get; set; }
 }
