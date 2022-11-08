@@ -43,7 +43,6 @@ public class HrvMeasurementRepository
     {
         var results = await _service.QueryAsync(async query =>
         {
-            // ToDo Query can be improved using first 
             var flux = $"from(bucket:\"{_bucket}\") |> range(start: 0)" +
                        $"|> filter(fn: (r) => r.id == \"{id}\")";
             
