@@ -1,9 +1,5 @@
 name: Dev Workflow
-
-on:
-  push:
-  pull_request:
-    branches: [ main ]
+on: [ pull_request ]
 
 env: 
   REGISTRY: ghcr.io
