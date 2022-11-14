@@ -20,8 +20,6 @@ public class InfluxDbSeeder
     public InfluxDbSeeder(HrvMeasurementRepository hrvMeasurementRepository)
     {
         _hrvMeasurementRepository = hrvMeasurementRepository;
-
-        Seed();
     }
 
     public async void Seed()
