@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+
+  # InfluxDb of Stress Data Service
+  stress-data-influxdb:
+    image: influxdb:latest
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=rbAKz20QR4u5J8
+      - DOCKER_INFLUXDB_INIT_ORG=SWSP
+      - DOCKER_INFLUXDB_INIT_BUCKET=StressData
+
+    
+  # Stress Data Service
+  stress-data-service:
+    build:
+      context: .
+      dockerfile: StressDataService/Dockerfile
+    ports:
+      - "5031:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging
+    depends_on: 
+      - stress-data-influxdb
+
+      
+# join swsp
+networks:
+  default:
+    name: swsp
