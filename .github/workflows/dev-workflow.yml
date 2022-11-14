@@ -28,7 +28,7 @@ jobs:
         
       - name: Unit tests
         # Make sure that all the tests are in the 'tests' folder in the root
-        working-directory: ./Patient-Service-Tests
+        working-directory: ./StressDataService
         run: dotnet test
       
       - name: Formatting
