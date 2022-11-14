@@ -1,21 +1,51 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using StressDataService.Database;
+using StressDataService.Interfaces;
+using StressDataService.Nats;
+using StressDataService.Repositories;
+using StressDataService.Services;
 
-namespace StressDataService
+const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<HrvMeasurementService>();
+builder.Services.AddSingleton<HrvMeasurementRepository>();
+
+builder.Services.AddSingleton<INatsService, NatsService>();
+builder.Services.AddSingleton<InfluxDbService>();
+builder.Services.AddScoped<InfluxDbSeeder>(); //can be placed among other "AddScoped" - above: var app = builder.Build();   
+
+builder.Services.AddSingleton<ProcessedDataService>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-
+    using var scope = app.Services.CreateScope();
+    var seeder = scope.ServiceProvider.GetRequiredService<InfluxDbSeeder>();
+    seeder.Seed();
 }
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseCors(myAllowSpecificOrigins);
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+
+
