@@ -5,13 +5,31 @@ on:
   pull_request:
     branches: [ main ]
 
+env: 
+  REGISTRY: ghcr.io
+
 jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
+  docker-build:
+  runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build ./StressDataService -t stress_data_service:$(date +%s)
+      run: docker build . -t stress_data_service:$(date +%s)
+
+  unit-tests-and-lint:
+    name: run unit tests and test lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          dotnet-version: '6.0.x'
+        
+      - name: Unit tests
+        # Make sure that all the tests are in the 'tests' folder in the root
+        working-directory: ./Patient-Service-Tests
+        run: dotnet test
+      
+      - name: Formatting
+        continue-on-error: true
+        run: dotnet format --verify-no-changes
