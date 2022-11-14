@@ -10,11 +10,12 @@ env:
 
 jobs:
   docker-build:
-  runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . -t stress_data_service:$(date +%s)
+    name: build with docker
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . -t stress_data_service:$(date +%s)
 
   unit-tests-and-lint:
     name: run unit tests and test lint
