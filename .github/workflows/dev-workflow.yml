@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build . -t stress_data_service:$(date +%s)
+        run: docker build . -f StressDataService/Dockerfile -t stress_data_service:$(date +%s)
 
   unit-tests-and-lint:
     name: run unit tests and test lint
