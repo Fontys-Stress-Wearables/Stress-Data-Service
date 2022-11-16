@@ -3,6 +3,7 @@ name: Publish Docker image to Github packages
 on:
   push:
     branches: [ main ]
+    tags: ['v*.*.*']
 
 env:
   REGISTRY: ghcr.io
