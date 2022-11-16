@@ -2,7 +2,7 @@ name: Publish Docker image to Github packages
 
 on:
   push:
-    branches: [ main, fix-publish-workflow ]
+    branches: [ main ]
     tags: ['v*.*.*']
 
 env:
