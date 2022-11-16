@@ -1,11 +1,8 @@
-﻿
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using StressDataService.Models;
 using System.Collections.Generic;
-using System;
+using StressDataService.Models;
 
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StressDataService.Controllers
 {
@@ -13,23 +10,11 @@ namespace StressDataService.Controllers
     [ApiController]
     public class PatientsController : ControllerBase
     {
-        private readonly IDatabaseHandler database;
-        public PatientsController(IDatabaseHandler database)
-        {
-            this.database = database;
-        }
-
-        // GET: <PatientsController>
-        [HttpGet]
-        public List<Patient> Get()
-        {
-            return database.GetPatients();
-        }
-
+        
         [HttpGet("stressed/{belowValue}")]
-        public List<StressedPatientDTO> GetStressedPatients(int belowValue)
+        public List<Patient> GetStressedPatients(int belowValue)
         {
-            return database.GetStressedPatientsBelowValue(belowValue);
+            throw new NotImplementedException();
 
             //// Get list of stressed patient ID's
             //List<HeartRateVariabilityMeasurement> stressedMeasurement = stressDatabase.GetStressedPatientsBelowValue(belowValue);
@@ -43,13 +28,6 @@ namespace StressDataService.Controllers
             //});
 
             //return stress;
-        }
-
-        // GET <PatientController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
         }
     }
 }

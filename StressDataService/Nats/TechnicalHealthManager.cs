@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
+using StressDataService.Interfaces;
 
 namespace StressDataService.Nats
 {
@@ -15,10 +15,10 @@ namespace StressDataService.Nats
 
         public void StartHeartbeat()
         {
-            Timer heartbeatTimer = new Timer(heartbeatTimerCallback, null, 0, 30000);
+            Timer heartbeatTimer = new Timer(HeartbeatTimerCallback, null, 0, 30000);
         }
 
-        static void heartbeatTimerCallback(object state)
+        static void HeartbeatTimerCallback(object state)
         {
             _natsService.Publish("technical_health", "heartbeat");
         }
