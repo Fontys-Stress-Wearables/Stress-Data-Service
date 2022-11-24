@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using StressDataService.Dtos;
+﻿using StressDataService.Dtos;
 using StressDataService.Interfaces;
 using StressDataService.Models;
 using StressDataService.Repositories;
 
 namespace StressDataService.Services;
 
-public class HrvMeasurementService
+public class HrvMeasurementService : IHrvMeasurementService
 {
     private readonly HrvMeasurementRepository _hrvRepository;
-    private readonly INatsService _nats;
 
-    
-    public HrvMeasurementService(HrvMeasurementRepository hrvRepository, INatsService nats)
+
+    public HrvMeasurementService(HrvMeasurementRepository hrvRepository)
     {
         _hrvRepository = hrvRepository;
-        _nats = nats;
     }
     
     public async Task<IEnumerable<HrvMeasurementDto>> GetAll()
@@ -25,7 +20,7 @@ public class HrvMeasurementService
         return await _hrvRepository.GetAll();
     }
     
-    public async Task<HrvMeasurementDto> GetById(Guid id)
+    public async Task<HrvMeasurementDto?> GetById(Guid id)
     {
         var sprint = await _hrvRepository.GetById(id);
 

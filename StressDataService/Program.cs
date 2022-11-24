@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<HrvMeasurementService>();
+builder.Services.AddTransient<IHrvMeasurementService, HrvMeasurementService>();
 builder.Services.AddSingleton<HrvMeasurementRepository>();
 
 builder.Services.AddSingleton<INatsService, NatsService>();
