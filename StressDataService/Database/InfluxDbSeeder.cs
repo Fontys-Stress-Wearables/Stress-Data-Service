@@ -10,14 +10,14 @@ namespace StressDataService.Database;
 
 public class InfluxDbSeeder
 {
-    private readonly HrvMeasurementRepository _hrvMeasurementRepository;
+    private readonly IHrvMeasurementRepository _hrvMeasurementRepository;
 
     private const int MinStress = 20;
     private const int MaxStress = 100;
     private const int PatientCount = 10;
     private const int PointCount = 10;
 
-    public InfluxDbSeeder(HrvMeasurementRepository hrvMeasurementRepository)
+    public InfluxDbSeeder(IHrvMeasurementRepository hrvMeasurementRepository)
     {
         _hrvMeasurementRepository = hrvMeasurementRepository;
     }

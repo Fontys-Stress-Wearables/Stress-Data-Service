@@ -7,10 +7,10 @@ namespace StressDataService.Services;
 
 public class HrvMeasurementService : IHrvMeasurementService
 {
-    private readonly HrvMeasurementRepository _hrvRepository;
+    private readonly IHrvMeasurementRepository _hrvRepository;
 
 
-    public HrvMeasurementService(HrvMeasurementRepository hrvRepository)
+    public HrvMeasurementService(IHrvMeasurementRepository hrvRepository)
     {
         _hrvRepository = hrvRepository;
     }
@@ -66,7 +66,7 @@ public class HrvMeasurementService : IHrvMeasurementService
         return hrvMeasurement.AsDto();
     }
 
-    public async Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateIssueDto)
+    public async Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateHrvMeasurementDto)
     {
         var measurement = await _hrvRepository.GetById(id);
         
@@ -77,7 +77,7 @@ public class HrvMeasurementService : IHrvMeasurementService
             PatientId = measurement.PatientId,
             WearableId = measurement.WearableId,
             TimeStamp = measurement.TimeStamp,
-            HeartRateVariability = updateIssueDto.HeartRateVariability
+            HeartRateVariability = updateHrvMeasurementDto.HeartRateVariability
         };
         
         _hrvRepository.Update(hrvMeasurement);

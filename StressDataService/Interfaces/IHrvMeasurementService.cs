@@ -12,7 +12,7 @@ public interface IHrvMeasurementService
         DateTime endTime);
     public Task<IEnumerable<HrvMeasurementDto>> GetByWearableIdAndTimespan(Guid wearableId, DateTime startTime,
         DateTime endTime);
-    public HrvMeasurementDto Create(CreateHrvMeasurementDto createIssueDto);
-    public Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateIssueDto);
+    public HrvMeasurementDto Create(CreateHrvMeasurementDto createHrvMeasurementDto);
+    public Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateHrvMeasurementDto);
     public Task<HrvMeasurementDto> Delete(Guid id);
 }

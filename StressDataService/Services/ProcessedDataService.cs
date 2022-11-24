@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using StressDataService.Models;
+﻿using StressDataService.Models;
 using StressDataService.Repositories;
-using System.Collections.Generic;
 using StressDataService.Interfaces;
 using StressDataService.Nats;
 
@@ -10,9 +8,9 @@ namespace StressDataService.Services
     public class ProcessedDataService
     {
         private readonly IServiceScopeFactory _scopeFactory;
-        private readonly HrvMeasurementRepository _repository;
+        private readonly IHrvMeasurementRepository _repository;
 
-        public ProcessedDataService(IServiceScopeFactory scopeFactory, HrvMeasurementRepository repository, INatsService nats)
+        public ProcessedDataService(IServiceScopeFactory scopeFactory, IHrvMeasurementRepository repository, INatsService nats)
         {
             _scopeFactory = scopeFactory;
             _repository = repository;

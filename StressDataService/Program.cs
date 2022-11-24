@@ -13,8 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IHrvMeasurementService, HrvMeasurementService>();
-builder.Services.AddTransient<IHrvMeasurementRepository, HrvMeasurementRepository>();
+builder.Services.AddSingleton<IHrvMeasurementService, HrvMeasurementService>();
+builder.Services.AddSingleton<IHrvMeasurementRepository, HrvMeasurementRepository>();
 
 builder.Services.AddSingleton<INatsService, NatsService>();
 builder.Services.AddSingleton<InfluxDbService>();
