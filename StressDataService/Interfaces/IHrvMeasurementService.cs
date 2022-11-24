@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using StressDataService.Dtos;
+﻿using StressDataService.Dtos;
 
 namespace StressDataService.Interfaces;
 
 // ToDO Implementation
-public interface IHrvMeasurement
+public interface IHrvMeasurementService
 {
     public Task<IEnumerable<HrvMeasurementDto>> GetAll();
     public Task<HrvMeasurementDto?> GetById(Guid id);
