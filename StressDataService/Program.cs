@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IHrvMeasurementService, HrvMeasurementService>();
-builder.Services.AddSingleton<HrvMeasurementRepository>();
+builder.Services.AddTransient<IHrvMeasurementRepository, HrvMeasurementRepository>();
 
 builder.Services.AddSingleton<INatsService, NatsService>();
 builder.Services.AddSingleton<InfluxDbService>();

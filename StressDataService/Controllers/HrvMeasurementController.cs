@@ -1,11 +1,7 @@
 ﻿using StressDataService.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using StressDataService.Dtos;
 using StressDataService.Interfaces;
-using StressDataService.Services;
 
 
 namespace StressDataService.Controllers
