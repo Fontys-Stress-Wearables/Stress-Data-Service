@@ -1,8 +1,9 @@
 ﻿using StressDataService.Dtos;
+using StressDataService.Models;
 
 namespace StressDataService.Interfaces;
 
-public interface IHrvMeasurementService
+public interface IHrvMeasurementRepository
 {
     public Task<IEnumerable<HrvMeasurementDto>> GetAll();
     public Task<HrvMeasurementDto?> GetById(Guid id);
@@ -12,7 +13,7 @@ public interface IHrvMeasurementService
         DateTime endTime);
     public Task<IEnumerable<HrvMeasurementDto>> GetByWearableIdAndTimespan(Guid wearableId, DateTime startTime,
         DateTime endTime);
-    public HrvMeasurementDto Create(CreateHrvMeasurementDto createHrvMeasurementDto);
-    public Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateHrvMeasurementDto);
-    public Task<HrvMeasurementDto> Delete(Guid id);
+    public void Create(HrvMeasurement hrvMeasurement);
+    public void Update(HrvMeasurement hrvMeasurement);
+    public Task Delete(Guid id);
 }

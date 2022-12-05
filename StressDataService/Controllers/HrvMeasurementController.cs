@@ -1,11 +1,7 @@
 ﻿using StressDataService.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using StressDataService.Dtos;
 using StressDataService.Interfaces;
-using StressDataService.Services;
 
 
 namespace StressDataService.Controllers
@@ -15,9 +11,9 @@ namespace StressDataService.Controllers
     public class HrvMeasurementsController : ControllerBase
     {
         private readonly INatsService _nats;
-        private readonly HrvMeasurementService _hrvService;
+        private readonly IHrvMeasurementService _hrvService;
 
-        public HrvMeasurementsController(HrvMeasurementService hrvService, INatsService nats)
+        public HrvMeasurementsController(IHrvMeasurementService hrvService, INatsService nats)
         {
             _nats = nats;
             _hrvService = hrvService;
@@ -42,7 +38,7 @@ namespace StressDataService.Controllers
         }
         
         [HttpGet("patient/{patientId}")]
-        public async Task<ActionResult<List<HrvMeasurementDto>>> GetByPatientId(Guid patientId)
+        public async Task<ActionResult<IEnumerable<HrvMeasurementDto>>> GetByPatientId(Guid patientId)
         {
             var measurements = await _hrvService.GetByPatientId(patientId);
             
@@ -66,7 +62,7 @@ namespace StressDataService.Controllers
         }
         
         [HttpGet("wearable/{wearableId}/timespan")]
-        public async Task<ActionResult<List<HrvMeasurement>>> GetByWearableIdAndTimespan(Guid wearableId, DateTime startTime, DateTime endTime)
+        public async Task<ActionResult<IEnumerable<HrvMeasurementDto>>> GetByWearableIdAndTimespan(Guid wearableId, DateTime startTime, DateTime endTime)
         {
             var measurements = await _hrvService.GetByWearableIdAndTimespan(wearableId, startTime, endTime);
 
@@ -78,11 +74,13 @@ namespace StressDataService.Controllers
         {
             var measurement = _hrvService.Create(measurementDto);
             
+            if (measurement == null) return BadRequest();
+
             return CreatedAtAction(nameof(GetById), new { id = measurement.Id }, measurement);
         }
         
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, UpdateHrvMeasurementDto updateSprintDto)
+        public async Task<ActionResult> Update(Guid id, UpdateHrvMeasurementDto updateSprintDto)
         {
             var measurement = await _hrvService.Update(id, updateSprintDto);
 
@@ -91,10 +89,8 @@ namespace StressDataService.Controllers
             return NoContent();
         }
         
-        // ToDo Delete all Ids from Wearable
-        // Also Delete All Ids from Patient
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             var sprint = await _hrvService.Delete(id);
 

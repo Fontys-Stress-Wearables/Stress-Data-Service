@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using StressDataService.Dtos;
+﻿using StressDataService.Dtos;
 using StressDataService.Interfaces;
 using StressDataService.Models;
 using StressDataService.Repositories;
 
 namespace StressDataService.Services;
 
-public class HrvMeasurementService
+public class HrvMeasurementService : IHrvMeasurementService
 {
-    private readonly HrvMeasurementRepository _hrvRepository;
-    private readonly INatsService _nats;
+    private readonly IHrvMeasurementRepository _hrvRepository;
 
-    
-    public HrvMeasurementService(HrvMeasurementRepository hrvRepository, INatsService nats)
+
+    public HrvMeasurementService(IHrvMeasurementRepository hrvRepository)
     {
         _hrvRepository = hrvRepository;
-        _nats = nats;
     }
     
     public async Task<IEnumerable<HrvMeasurementDto>> GetAll()
@@ -25,7 +20,7 @@ public class HrvMeasurementService
         return await _hrvRepository.GetAll();
     }
     
-    public async Task<HrvMeasurementDto> GetById(Guid id)
+    public async Task<HrvMeasurementDto?> GetById(Guid id)
     {
         var sprint = await _hrvRepository.GetById(id);
 
@@ -71,7 +66,7 @@ public class HrvMeasurementService
         return hrvMeasurement.AsDto();
     }
 
-    public async Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateIssueDto)
+    public async Task<HrvMeasurementDto> Update(Guid id, UpdateHrvMeasurementDto updateHrvMeasurementDto)
     {
         var measurement = await _hrvRepository.GetById(id);
         
@@ -82,7 +77,7 @@ public class HrvMeasurementService
             PatientId = measurement.PatientId,
             WearableId = measurement.WearableId,
             TimeStamp = measurement.TimeStamp,
-            HeartRateVariability = updateIssueDto.HeartRateVariability
+            HeartRateVariability = updateHrvMeasurementDto.HeartRateVariability
         };
         
         _hrvRepository.Update(hrvMeasurement);

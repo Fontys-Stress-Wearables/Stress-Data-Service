@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InfluxDB.Client.Api.Domain;
+﻿using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Core.Flux.Domain;
 using InfluxDB.Client.Writes;
-using Microsoft.Extensions.Configuration;
 using StressDataService.Dtos;
+using StressDataService.Interfaces;
 using StressDataService.Models;
 using StressDataService.Services;
 
 namespace StressDataService.Repositories;
 
-public class HrvMeasurementRepository
+public class HrvMeasurementRepository : IHrvMeasurementRepository
 {
     private readonly InfluxDbService _service;
     private readonly string _org;
@@ -78,6 +74,20 @@ public class HrvMeasurementRepository
         _service.WritePoint(point);
     }
     
+        
+    public void Update(HrvMeasurement hrvMeasurement)
+    {
+        var point = CreatePoint(hrvMeasurement);
+        
+        _service.WritePoint(point);
+    }
+    
+    public async Task Delete(Guid measurementId)
+    {
+        throw new NotImplementedException();
+    }
+
+    
     public async Task<IEnumerable<HrvMeasurementDto>> GetByPatientIdAndDate(Guid patientId, DateTime dateTime)
     {
         var results = await _service.QueryAsync(async query =>
@@ -132,19 +142,7 @@ public class HrvMeasurementRepository
 
         return results;
     }
-    
-    public void Update(HrvMeasurement hrvMeasurement)
-    {
-        var point = CreatePoint(hrvMeasurement);
-        
-        _service.WritePoint(point);
-    }
-    
-    public async Task Delete(Guid measurementId)
-    {
-        throw new NotImplementedException();
-    }
-    
+
     private PointData CreatePoint(HrvMeasurement measurement)
     {
         return PointData
