@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: stress-data-artifact
-        path: /home/runner/work/Stress-Data-Service/Feedback-Service/release/
+        path: /home/runner/work/StressDataService/StressDataService/release/
 
   analyse:
     name: Unit Tests
