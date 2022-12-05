@@ -22,21 +22,14 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-      working-directory: Stress-Data-Service
+      working-directory: StressDataService
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: Stress-Data-Service
+      working-directory: StressDataService
 
     - name: Publish
       run: dotnet publish StressDataService/StressDataService.csproj -c Release -o release --nologo
-        
-    - name: Lint Code Base
-      uses: github/super-linter@v4
-      env:
-        VALIDATE_ALL_CODEBASE: false
-        DEFAULT_BRANCH: master
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Persist workflow data as artifact
       uses: actions/upload-artifact@v3
