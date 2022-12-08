@@ -108,7 +108,8 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"Fontys-Stress-Wearables_Stress-Data-Service" /o:"fontys-stress-wearables" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build StressDataService/StressDataService.csproj
- 
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
   # define job to build and publish docker image
   build-and-push-docker-image:
     name: Build Docker image and push to repository
