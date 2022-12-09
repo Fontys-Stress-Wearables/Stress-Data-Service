@@ -42,7 +42,7 @@ jobs:
     - name: Persist workflow data as artifact
       uses: actions/upload-artifact@v3
       with:
-        name: stress-data-artifact
+        name: stress-data-cicd-artifact
         path: /home/runner/work/Stress-Data-Service/Stress-Data-Service/release/
 
   analyse:
@@ -56,7 +56,7 @@ jobs:
       - name: Download workflow data
         uses: actions/download-artifact@v3
         with:
-          name: stress-data-artifact
+          name: stress-data-cicd-artifact
           path: /home/runner/work/Stress-Data-Service/Stress-Data-Service/release/
 
       - name: Test
