@@ -1,31 +1,33 @@
+
 # Stress-Data-Service
-## Port: 5031
-The service that is responsible for handling stress data and communicating with the stress measurements database.
-This service gets processed stress data from the Stress Algorithm Service, stores it in a database and is used by the Caregiver Dashboard to retrieve this stress data.
+The Stress Data Service is responsible for handling stress data and communicating with the stress measurements database.
+
+The processed data should be received from the wearables or Stress Algorithm Service, but this connection is currently not implemented.
+
+This data is used by the Caregiver Dashboard to retrieve this stress data.
+
+## Running The Service
+To run the service, you may use the command:
+```
+docker compose up
+```
+This will start both the service and the database.
+
+## Ports: 5031 & 8086
+* The Stress Data Service runs on port **5031**.
+* The corresponding database runs on port **8086**.
 
 ## Database
-To run the database locally, you need to have docker running, and execute the command:
+The Stress Data Service uses [InfluxDB](https://www.influxdata.com/) to store its data, which is a time series database that excels at time based queries. 
+
+**It is highly recommended to start the database through docker compose, as it will be pre-configured.**
+
+To run the database manually, you can execute the following docker command.
 ```
 docker run -p 8086:8086 influxdb
 ```
-Or if you use a docker compose, add this to the compose file:
-```
-version: '3.9'
-services:
-  stress-data-influxdb:
-    image: influxdb:latest
-    ports:
-      - "8086:8086"
-    expose:
-      - "8086"
-    environment:
-      database_connectionString: ${DATABASE_CONNECTIONSTRING}
-      database_token: ${DATABASE_TOKEN}
-      database_org: "SWSP"
-      database_bucket: "StressData"
-```
-Then go to http://localhost:8086, and set up the credentials there, create an organisation with a bucket named "StressData"
-and then generate an API token with read/write access which can later be used in the configuration.
+Then go to http://localhost:8086, and set up credentials. Create an organisation with a bucket named "StressData" and generate an API token with read/write access.
+
 The credentials that need to be added to the secrets, appsettings.json file or the environment are:
 ```
 "database": {
@@ -38,15 +40,44 @@ The credentials that need to be added to the secrets, appsettings.json file or t
   Afterwards, you should be able to run everything
 ## API endpoints
 ```
-[HttpGET] GetByPatientId:
-/HeartRateVariabilityMeasurements/patient/{patientId}
+[HttpGet] GetAll
+/HrvMeasurements
 
-[HttpGet] GetByPatientIdAndDate:
-/HeartRateVariabilityMeasurements/patient/{patientId}/timeframe/{date}
+[HttpGet] GetById(Guid id)
+/HrvMeasurements/{id}
 
-[HttpGet] GetById
-/HeartRateVariabilityMeasurements/{id}
+[HttpGet] GetByPatientId(Guid patientId)
+/HrvMeasurements/patient/{patientId}
+
+[HttpGet] GetByPatientIdAndDate(Guid patientId, DateTime date)
+/HrvMeasurements/date/{patientId}
+
+[HttpGet] GetByPatientIdAndTimespan(Guid patientId, DateTime startTime, DateTime endTime)
+/HrvMeasurements/patient/{patientId}/timespan
+
+[HttpPost] Create(CreateHrvMeasurementDto measurementDto)
+/HrvMeasurements
+
+[HttpPut] Update(Guid id, UpdateHrvMeasurementDto measurementDto)
+/HrvMeasurements
 ```
+
+The following endpoint exist for development
+```
+[HttpGet] SimulateNats
+/HrvMeasurements/nats/simulate
+```
+
+Lastly, these endpoints are not implemented.
+```
+[HttpDelete] Delete
+/HrvMeasurements
+
+[HttpGet] GetStressedPatients
+/patients/stressed/{belowValue}
+```
+
+
 ## Nats
 The service subscribes to the following topics:
 ```
